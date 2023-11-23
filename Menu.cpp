@@ -202,7 +202,7 @@ void Menu::statisticsMenu(Data &data)
         g.tab(60);cout << "------------------------------------------------" << endl;
         g.tab(60);cout << "|    1. Thong ke so luong ton kho              |" << endl;
         g.tab(60);cout << "|    2. Thong ke sach ban chay nhat            |" << endl;
-        g.tab(60);cout << "|    3. Thong ke doanh thu cua cua hang        |" << endl;//? sang mai giaii quyet
+        g.tab(60);cout << "|    3. Thong ke doanh thu cua cua hang        |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai               |" << endl;
         g.tab(60);cout << "------------------------------------------------" << endl;
         g.downLine(1);
@@ -246,10 +246,10 @@ void Menu::discountMenu(Data &data)
         g.tab(75);cout<<"QUAN LI MA GIAM GIA" << endl;
         g.downLine(2);
         g.tab(60);cout << "----------------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;//?
+        g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;//? sang mai
         g.tab(60);cout << "|    2. Xoa ma giam gia                            |" << endl;//?
         g.tab(60);cout << "|    3. Hien thi thong tin tat ca ma giam gia      |" << endl;
-        g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;//?
+        g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;//? sang mai
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai                   |" << endl;
         g.tab(60);cout << "----------------------------------------------------" << endl;
         g.downLine(1);

@@ -26,14 +26,16 @@ void Statistics::sales(Data& data){
     g.tab(71);
     cout << " --------------------" << endl;
     cin.ignore();
+    g.downLine(1);
    Date d1, d2;
    bool check=true;
    do{
+      g.tab(73);cout<<"Moc thoi gian"<<endl;
       g.tab(57);
-      cout<<"Nhap ngay bat dau(dd/mm/yyyy): ";
+      cout<<"*Ngay bat dau"<<endl;
       d1.setDate();
       g.tab(57);
-      cout<<"Nhap ngay ket thuc(dd/mm/yyyy): ";
+      cout<<"*Ngay ket thuc: "<<endl;
       d2.setDate();
       if(d1<=d2){
          check=false;
@@ -44,22 +46,23 @@ void Statistics::sales(Data& data){
       }
    }while(check);
    List<Order> dataOrder=data.getDataOrder();
-   g.tab(57);
+   g.downLine(1);
+   g.tab(72);
    cout<<"DANH SACH HOA DON"<<endl;
-   g.tab(40);cout << "==============================================" << endl;
-   g.tab(40);cout << "| Ma Hoa Don |Ma Khach Hang |Tong Tien(VND)  |"<<endl;
-   g.tab(40);cout << "----------------------------------------------" << endl;
+   g.tab(56);cout << "==============================================" << endl;
+   g.tab(56);cout << "| Ma Hoa Don |Ma Khach Hang |Tong Tien(VND)  |"<<endl;
+   g.tab(56);cout << "----------------------------------------------" << endl;
    double total=0;
    for(int index=0;index<dataOrder.size_list();index++){
       Date tmp=dataOrder[index].getDate();
       if(d1<=tmp&& d2>=tmp){
-         g.tab(40);cout<< "| " << left << setw(11)<<dataOrder[index].getIDOrder()<<"|" <<left << setw(14) 
-         <<dataOrder[index].getIDCustomer()<<"|" << left << setw(15)<<dataOrder[index].getTotalPrice() << "|" <<endl;
+         g.tab(56);cout<< "| " << left << setw(11)<<dataOrder[index].getIDOrder()<<"|" <<left << setw(14) 
+         <<dataOrder[index].getIDCustomer()<<"|" << left << setw(15)<<dataOrder[index].getTotalPrice() << " |" <<endl;
          total+=dataOrder[index].getTotalPrice();
       }
    }
-   g.tab(40);cout << "==============================================" << endl;
-   cout<<"--->Tong doanh thu: "<<total<<" VND"<<endl;
+   g.tab(56);cout << "==============================================" << endl;
+   g.tab(66);cout<<"--->Tong doanh thu: "<<total<<" VND"<<endl;
 }
 void Statistics::listBestSeller(Data &data){
    g.downLine(1);
