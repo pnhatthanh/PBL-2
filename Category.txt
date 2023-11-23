@@ -1,0 +1,4 @@
+TN,Truyen ngan
+CNTT,Cong nghe thong tin
+KH-XH,Khoa hoc xa hoi
+TT,Truyen tranh

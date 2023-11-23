@@ -1,0 +1,5 @@
+DH1,Mat biec,1
+DH1,Python co ban,1
+DH2,Ban chi tuong la minh dang rat co gang,1
+DH2,Python co ban,1
+DH3,Lap trinh C can ban,1
