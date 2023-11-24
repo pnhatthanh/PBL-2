@@ -1,45 +1,68 @@
 #include "OrderManagement.h"
 void OrderManagement::creatOrder(Data &data)
 {
-    cout << "TAO DON HANG" << endl;
-    cout << "THONG TIN DON HANG" << endl;
-    cout << "Ma don hang: ";
-    string idOrder;
-    cin>>idOrder;
-    cout << "Ma khach hang: ";
+    g.tab(71);
+    cout << " ---------------" << endl;
+    g.tab(71);
+    cout << "| TAO DON HANG |" << endl;
+    g.tab(71);
+    cout << " ---------------" << endl;
+    g.downLine(1);
+    g.tab(68);cout << "THONG TIN KHACH HANG" << endl;
+    cin.ignore();
     string idCustomer;
-    cin>>idCustomer;
-    cout << "Ho ten khach hang: ";
-    cin.ignore(1);
-    string name;
-    getline(cin, name);
-    cout << "Dia chi: ";
-    string address;
-    getline(cin, address);
-    cout << "So dien thoai: ";
-    string phone;
-    getline(cin, phone);
-    cout << "Email: ";
-    string email;
-    getline(cin,email);
-    cout<<idCustomer<<" "<<name<<" "<<address<<" "<<phone<<" "<<email<<endl;
-    Customer cs(idCustomer, name, address, phone, email);
-    List<Customer> &customer=data.getDataCustomer();
-    bool check=false;
-    for(int i=0;i<customer.size_list();i++){
-        if(customer[i].getFullName()==cs.getFullName()&&customer[i].getPhoneNumber()==cs.getPhoneNumber()){
-            check=true;            
+    g.tab(60);cout << "Ma khach hang:      ";
+    getline(cin,idCustomer);
+    int check=-1;
+    for(int i=0;i<data.getDataCustomer().size_list();i++){
+        if(idCustomer==data.getDataCustomer()[i].getIDCustomer()){
+            check=i;
         }
     }
-    if(check==false){
+    if(check>=0){
+        g.tab(60);cout << "Ho ten khach hang:  "<<data.getDataCustomer()[check].getFullName()<<endl;
+        g.tab(60);cout << "Dia chi:            "<<data.getDataCustomer()[check].getAddress()<<endl;
+        g.tab(60);cout << "So dien thoai:      "<<data.getDataCustomer()[check].getPhoneNumber()<<endl;
+        g.tab(60);cout << "Email:              "<<data.getDataCustomer()[check].getEmail()<<endl;
+    }else{
+        g.tab(60);cout << "Ho ten khach hang:  ";
+        string name;
+        getline(cin, name);
+        g.tab(60);cout << "Dia chi:            ";
+        string address;
+        getline(cin, address);
+        g.tab(60);cout << "So dien thoai:      ";
+        string phone;
+        getline(cin, phone);
+        g.tab(60);cout << "Email:              ";
+        string email;
+        getline(cin,email);
+        Customer cs(idCustomer, name, address, phone, email);
         data.getDataCustomer().addLast(cs);
-    } 
-    cout << "DON HANG" << endl;
+    }
+    g.downLine(1);
+    g.tab(68);cout << "THONG TIN DON HANG" << endl;
+    string idOrder;
+    do{
+        bool check=1;
+        g.tab(60);cout << "Ma don hang:        ";
+        getline(cin,idOrder);
+        for(int i=0;i<data.getDataOrder().size_list();i++){
+            if(idOrder==data.getDataOrder()[i].getIDOrder()){
+                check=0;
+            }
+        }
+        if(check==0){
+            g.tab(65);cout<<"Ma don hang da ton tai!"<<endl;
+        }else{
+            break;
+        }
+    }while(true);
     double totalPrice = 0;
     List<Book> &lb = data.getDataBook();
     while (true)
     {
-        cout << "Ten sach: ";
+        g.tab(60);cout << "Ten sach:      ";
         string nameBook;
         getline(cin, nameBook);
         int index = -1;
@@ -52,43 +75,45 @@ void OrderManagement::creatOrder(Data &data)
         }
         if (index < 0)
         {
-            cout << "Sach khong ton tai!!!" << endl;
+            g.tab(65);cout << "Sach khong ton tai!!!" << endl;
             continue;
         }
-        cout << "So luong";
+        g.tab(60);cout << "So luong       ";
         int quantity;
         cin >> quantity;
         if (quantity > lb[index].getQuantity())
         {
-            cout << "So luong ton kho khong du!!!";
+            g.tab(65);cout << "So luong ton kho khong du!!!";
             continue;
         }
         string idBook = lb[index].getIDBook();
         data.decreaseQuantityOfBook(idBook, quantity);
         DetailOrder detailOrder(idOrder, nameBook, quantity);
         data.getDataDetailOrder().addLast(detailOrder);
-        cout << "Them sach thanh cong!" << endl;
+        g.tab(64);cout << "--> Them sach thanh cong! <--" << endl;
         totalPrice += lb[index].getPrice() * quantity;
         int choice;
-        cout << "Nhap '1' de tiep tuc them sach- Nhan '0' de dung: ";
+        g.tab(59);cout << "Nhap '1' de tiep tuc them sach- Nhan '0' de dung: ";
         cin >> choice;
         if (choice == 0)
             break;
     }
-    cout << "Thoi gian khoi tao don hang " << endl;
+    g.tab(60);cout << "Thoi gian khoi tao don hang " << endl;
+    cin.ignore();
     Date d;
-    d.setDate();
+    g.tab(5);d.setDate();
     while (true)
     {
-        cout<<"Nhap ma giam gia: ";
+        g.tab(60);cout<<"Ma giam gia: ";
         string idDiscount;
-        cin>>idDiscount;
+        getline(cin,idDiscount);
         if (idDiscount=="0")
         {
-            idDiscount = "null";
+            idDiscount = "0";
             Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
             data.getDataOrder().addLast(od);
-            cout << "TAO DON HANG THANH CONG!!!" << endl;
+            g.tab(55);
+            cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
             break;
         }
         else
@@ -105,7 +130,7 @@ void OrderManagement::creatOrder(Data &data)
             }
             if (index < 0)
             {
-                cout << "Ma giam gia khong ton tai!" << endl;
+                g.tab(65);cout << "Ma giam gia khong ton tai!" << endl;
             }else{
                 Date firstDate = ld[index].getFirstDate();
                 Date lastDate = ld[index].getLastDate();
@@ -118,17 +143,18 @@ void OrderManagement::creatOrder(Data &data)
                         totalPrice = totalPrice - dis;
                         Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
                         data.getDataOrder().addLast(od);
-                        cout << "TAO DON HANG THANH CONG!!!" << endl;
+                        g.tab(55);
+                        cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
                         break;
                     }
                     else
                     {
-                        cout << "Ma giam gia khong hop le!!!" << endl;
+                        g.tab(65);cout << "Ma giam gia khong hop le!!!" << endl;
                     }
                 }
                 else
                 {
-                    cout << "Ma giam gia het han!!!" << endl;
+                    g.tab(65);cout << "Ma giam gia het han!!!" << endl;
                 }
             }
         }

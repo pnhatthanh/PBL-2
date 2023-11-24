@@ -82,15 +82,23 @@ void DiscountManagement::addDisscount(Data& data){
     }else{
         status="Het";
     }
-    Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status);
+    int flag=1;
+    Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.getDataDiscount().addLast(dis);
     g.downLine(1);
     g.tab(59);
     cout << "--------THEM MA GIAM GIA THANH CONG!!!--------" << endl;
 }
 void DiscountManagement::deleteDiscount(Data& data){
+    g.tab(72);
+    cout << " ------------------" << endl;
+    g.tab(72);
+    cout << "| XOA MA GIAM GIA |" << endl;
+    g.tab(72);
+    cout << " ------------------" << endl;
+    g.downLine(1);
     List<Discount> &ld=data.getDataDiscount();
-    g.tab(57);
+    g.tab(60);
     cout<<"Nhap ma giam gia ban muon xoa: ";
     string nameDiscount;
     cin.ignore(1);
@@ -101,11 +109,12 @@ void DiscountManagement::deleteDiscount(Data& data){
             index=i;
         }
     }
+    g.downLine(1);
     if(index<0){
-        cout<<"Ma giam gia khong ton tai!!!"<<endl;
+        g.tab(65);cout<<"Ma giam gia khong ton tai!!!"<<endl;
         return;
     }
-    data.getDataDiscount().remove(index);
+    data.getDataDiscount()[index].setFlag(0);
     g.tab(57);
     cout << "Xoa ma giam gia thanh cong!!!" << endl;
 }
@@ -125,10 +134,12 @@ void DiscountManagement::showDiscount(Data &data){
     g.tab(30);cout << " |Ma giam gia |Muc giam gia(VND) |So tien toi thieu(VND) |So luong |Ngay bat dau |Ngay ket thuc |Tinh trang |" << endl;
     g.tab(30);cout << " ------------------------------------------------------------------------------------------------------------" << endl;
     for(int i=0;i<ld.size_list();i++){
-        g.tab(30);cout<<" |" << left << setw(12) << ld[i].getIDDiscount() << "|" << left << setw(18) << ld[i].getDiscount()
-        << "|"<< left << setw(23) <<ld[i].getLevel()<< "|" << left << setw(9) <<ld[i].getQuantity()
-        << "|" << left <<ld[i].getFirstDate() << "   "<<"|" << left <<ld[i].getLastDate() << "    "
-        << "|" << left << setw(11) <<ld[i].getStatus()<< "|" <<endl;
+        if(ld[i].getFlag()==1){
+            g.tab(30);cout<<" |" << left << setw(12) << ld[i].getIDDiscount() << "|" << left << setw(18) << ld[i].getDiscount()
+            << "|"<< left << setw(23) <<ld[i].getLevel()<< "|" << left << setw(9) <<ld[i].getQuantity()
+            << "|" << left <<ld[i].getFirstDate() << "   "<<"|" << left <<ld[i].getLastDate() << "    "
+            << "|" << left << setw(11) <<ld[i].getStatus()<< "|" <<endl;
+        }
     }
     g.tab(30);cout << " ============================================================================================================" << endl;
 }
@@ -149,7 +160,7 @@ void DiscountManagement::editDiscount(Data &data){
     getline(cin,nameDiscount);
     int index=-1;
     for(int i=0;i<ld.size_list();i++){
-        if(ld[i].getIDDiscount()==nameDiscount){
+        if(ld[i].getIDDiscount()==nameDiscount&&ld[i].getFlag()==1){
             index=i;
             break;
         }
@@ -232,7 +243,8 @@ void DiscountManagement::editDiscount(Data &data){
     }else{
         status="Het";
     }
-    Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status);
+    int flag=1;
+    Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.updateDiscount(index,dis);
     g.downLine(1);
     g.tab(59);

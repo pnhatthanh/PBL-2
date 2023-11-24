@@ -163,7 +163,7 @@ void Menu::orderMenu(Data &data)
         g.tab(72);cout<< "QUAN LI HOA DON" << endl;
         g.downLine(2);
         g.tab(60);cout << "-------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;//toi ni
+        g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;
         g.tab(60);cout << "|    2. Xuat hoa don cua khach hang       |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai          |" << endl;
         g.tab(60);cout << "-------------------------------------------" << endl;
@@ -177,6 +177,7 @@ void Menu::orderMenu(Data &data)
             order.creatOrder(data);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            cin.ignore(1);
             break;
         case 2:
             system("cls");

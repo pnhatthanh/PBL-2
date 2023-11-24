@@ -11,9 +11,10 @@ class Discount{
         Date firstDate;
         Date lastDate;
         string status;
+        int flag;
     public:
         Discount();
-        Discount(string,double,double,int,Date,Date,string);
+        Discount(string,double,double,int,Date,Date,string,int);
         string getIDDiscount();
         double getDiscount();
         double getLevel();
@@ -21,4 +22,6 @@ class Discount{
         Date getFirstDate();
         Date getLastDate();
         string getStatus();
+        int getFlag();
+        void setFlag(int);
 };

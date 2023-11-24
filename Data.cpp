@@ -107,6 +107,7 @@ void Data::readFileDiscount(){
         string firstDate;
         string lastDate;
         string status;
+        int flag;
         getline(f,idDiscount,',');
         f>>discount;
         f.ignore(1);
@@ -116,7 +117,9 @@ void Data::readFileDiscount(){
         f.ignore(1);
         getline(f,firstDate,',');
         getline(f,lastDate,',');
-        getline(f,status);
+        getline(f,status,',');
+        f>>flag;
+        f.ignore(1);
         int day1=(firstDate[0]-'0')*10+(firstDate[1]-'0');
         int month1=(firstDate[3]-'0')*10+(firstDate[4]-'0');
         int year1=(firstDate[6]-'0')*1000+(firstDate[7]-'0')*100+(firstDate[8]-'0')*10+(firstDate[9]-'0');
@@ -125,7 +128,7 @@ void Data::readFileDiscount(){
         int month2=(lastDate[3]-'0')*10+(lastDate[4]-'0');
         int year2=(lastDate[6]-'0')*1000+(lastDate[7]-'0')*100+(lastDate[8]-'0')*10+(lastDate[9]-'0');
         Date dd2(day2,month2,year2);
-        Discount dis(idDiscount,discount,level,quantity,dd1,dd2,status);
+        Discount dis(idDiscount,discount,level,quantity,dd1,dd2,status,flag);
         this->dataDiscount.addLast(dis);
     }
 }
