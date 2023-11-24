@@ -1,43 +1,93 @@
 #include"DiscountManagement.h"
 void DiscountManagement::addDisscount(Data& data){
     g.downLine(1);
-    g.tab(71);
+    g.tab(72);
     cout << " ------------------" << endl;
-    g.tab(71);
+    g.tab(72);
     cout << "| THEM MA GIAM GIA |" << endl;
-    g.tab(71);
+    g.tab(72);
     cout << " ------------------" << endl;
-    g.tab(57);
-    cout<<"Ma giam gia: "; string idDiscount;
+    g.downLine(1);
+    g.tab(71);
+    cout<<"Thong tin ma giam gia"<<endl;
     cin.ignore(1);
-    getline(cin,idDiscount);
-    g.tab(57);
-    cout<<"Muc giam gia(VND): ";double discount;
-    cin>>discount;
-    g.tab(57);
-    cout<<"So tien toi thieu(VND): ";double level;
-    cin>>level;
-    g.tab(57);
-    cout<<"So luong ma giam gia: ";int quantity;
-    cin>>quantity;
-    g.tab(57);
-    cout<<"Ngay bat dau: " << endl;Date firstDate;
-    firstDate.setDate();
-    g.tab(57);
-    cout<<"Ngay ket thuc: " << endl;Date lastDate;
-    lastDate.setDate();
+    string idDiscount;
+    do{
+        bool check=1;
+        g.tab(60);
+        cout << "Ma giam gia:              "; 
+        getline(cin,idDiscount);
+        for(int i=0;i<data.getDataDiscount().size_list();i++){
+            if(idDiscount==data.getDataDiscount()[i].getIDDiscount()){
+                check=0;
+            }
+        }
+        if(check==0){
+            g.tab(64);cout<<"Ma giam gia da ton tai!!!"<<endl;
+        }else{
+            break;
+        }
+    }while(true);
+    double discount;
+    do{
+        g.tab(60);
+        cout << "Muc giam gia(VND):        ";
+        cin>>discount;
+        if(discount<0){
+            g.tab(64);
+            cout<<"Muc giam gia khong hop le!"<<endl;
+        }
+    }while(discount<0);
+    double level;
+    do{
+        g.tab(60);
+        cout << "So tien toi thieu(VND):   ";
+        cin>>level;
+        if(level<0){
+            g.tab(64);
+            cout<<"So tien toi thieu khong hop le!"<<endl;
+        }
+    }while(level<0);
+    int quantity;
+    do{
+        g.tab(60);
+        cout << "So luong ma giam gia:     ";
+        cin>>quantity;
+        if(quantity<0){
+            g.tab(64);
+            cout<<"So luong ma giam gia khong hop le!"<<endl;
+        }
+    }while(quantity<0);
+    cin.ignore();
+    Date firstDate;
+    Date lastDate;
+    do{
+      g.tab(73);cout<<"Moc thoi gian"<<endl;
+      g.tab(57);
+      cout<<"*Ngay bat dau"<<endl;
+      firstDate.setDate();
+      g.tab(57);
+      cout<<"*Ngay ket thuc: "<<endl;
+      lastDate.setDate();
+      if(firstDate<=lastDate){
+        break;
+      }else{
+        g.tab(57);
+        cout<<"Moc thoi gian khong hop le. Vui long nhap lai!!!"<<endl;
+      }
+   }while(true);
     string status;
     if(quantity>0){
-        status="Ok";
+        status="Con";
     }else{
-        status="Empty";
+        status="Het";
     }
     Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status);
     data.getDataDiscount().addLast(dis);
-    g.tab(57);
-    cout<<"Them ma giam gia thanh cong!!!"<<endl;
+    g.downLine(1);
+    g.tab(59);
+    cout << "--------THEM MA GIAM GIA THANH CONG!!!--------" << endl;
 }
-
 void DiscountManagement::deleteDiscount(Data& data){
     List<Discount> &ld=data.getDataDiscount();
     g.tab(57);
@@ -85,16 +135,16 @@ void DiscountManagement::showDiscount(Data &data){
 void DiscountManagement::editDiscount(Data &data){
     //Lay danh sach ma giam gia
     List<Discount> &ld=data.getDataDiscount();
-    g.downLine(1);
     g.tab(71);
     cout << " ----------------------" << endl;
     g.tab(71);
     cout << "| CHINH SUA MA GIAM GIA |" << endl;
     g.tab(71);
     cout << " ----------------------" << endl;
-    g.tab(57);
-    cout<<"Nhap ma giam gia: ";
+    g.downLine(1);
     cin.ignore(1);
+    g.tab(65);
+    cout<<"Nhap ma giam gia: ";
     string nameDiscount;
     getline(cin,nameDiscount);
     int index=-1;
@@ -104,34 +154,87 @@ void DiscountManagement::editDiscount(Data &data){
             break;
         }
     }
+    g.downLine(1);
     if(index<0){
-        g.tab(57);
+        g.tab(70);
         cout<<"Ma giam gia khong ton tai!!!"<<endl;
         return;
-    }    
-    g.tab(57);
-    cout<<"Muc giam gia(VND): ";double discount;
-    cin>>discount;
-    g.tab(57);
-    cout<<"So tien toi thieu(VND): ";double level;
-    cin>>level;
-    g.tab(57);
-    cout<<"So luong ma giam gia: ";int quantity;
-    cin>>quantity;
-    g.tab(57);
-    cout<<"Ngay bat dau:" << endl;Date firstDate;
-    firstDate.setDate();
-    g.tab(57);
-    cout<<"Ngay ket thuc:" << endl;Date lastDate;
-    lastDate.setDate();
+    }
+    g.tab(72);
+    cout<<"THONG TIN MA GIAM GIA"<<endl;    
+    g.tab(65);
+    cout << "Muc giam gia(VND):       "<<ld[index].getDiscount()<<" VND"<<endl;
+    g.tab(65);
+    cout << "So tien toi thieu(VND):  "<<ld[index].getLevel()<<" VND"<<endl;
+    g.tab(65);
+    cout << "So luong ma giam gia:    "<<ld[index].getQuantity()<<endl;
+    g.tab(65);
+    cout << "Ngay bat dau:            "<<ld[index].getFirstDate()<<endl;
+    g.tab(65);
+    cout << "Ngay ket thuc:           "<<ld[index].getLastDate()<<endl;
+    g.tab(65);
+    cout << "Trang thai ma giam gia:  "<<ld[index].getStatus()<<endl;
+    g.downLine(1);
+    double discount, level;
+    int quantity;
+    Date firstDate, lastDate;
     string status;
-    if(quantity>0){
-        status="Ok";
+    g.tab(72);
+    cout<<"CHINH SUA MA GIAM GIA"<<endl;
+    g.tab(63);cout<<"Note: Nhan 'y' de chinh sua- Nhan 'n' de bo qua"<<endl;
+    g.downLine(1);
+    g.tab(65);
+    char c;
+    cout << "Muc giam gia(VND)        ";cin>>c;
+    if(c=='y'){
+        g.tab(72);
+        cout<<"Nhap muc giam gia:      ";
+        cin>>discount;
     }else{
-        status="Empty";
+        discount=ld[index].getDiscount();
+    }
+    g.tab(65);
+    cout << "So tien toi thieu(VND):  ";cin>>c;
+    if(c=='y'){
+        g.tab(72);
+        cout<<"Nhap so tien toi thieu: ";
+        cin>>level;
+    }else{
+        level=ld[index].getLevel();
+    }
+    g.tab(65);
+    cout << "So luong ma giam gia:    ";cin>>c;
+    if(c=='y'){
+        g.tab(72);
+        cout<<"Nhap so luong ma giam gia: ";
+        cin>>quantity;
+    }else{
+        quantity=ld[index].getQuantity();
+    }
+    g.tab(65);
+    cout << "Ngay bat dau:            ";cin>>c;
+    if(c=='y'){
+        cin.ignore();
+        g.tab(12);firstDate.setDate();
+    }else{
+        firstDate=ld[index].getFirstDate();
+    }
+    g.tab(65);
+    cout << "Ngay ket thuc:           ";cin>>c;
+    if(c=='y'){
+        g.tab(12);lastDate.setDate();
+    }else{
+        cin.ignore();
+        lastDate=ld[index].getLastDate();
+    }
+    if(quantity>0){
+        status="Con";
+    }else{
+        status="Het";
     }
     Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status);
     data.updateDiscount(index,dis);
-    g.tab(57);
-    cout<<"Cap nhat ma giam gia thanh cong!!!"<<endl;
+    g.downLine(1);
+    g.tab(59);
+    cout << "--------CAP NHAT MA GIAM GIA THANH CONG!!!--------" << endl;
 }

@@ -155,7 +155,6 @@ void BookManagement::showBook(Data &data)
 }
 void BookManagement::editPriceBook(Data &data)
 {
-    g.downLine(1);
     g.tab(71);
     cout << " --------------------" << endl;
     g.tab(71);
@@ -168,6 +167,7 @@ void BookManagement::editPriceBook(Data &data)
     cin.ignore(1);
     string idBook;
     getline(cin, idBook);
+    g.downLine(1);
     int index = -1;
     for (int i = 0; i < data.getDataBook().size_list(); i++)
     {
@@ -179,7 +179,7 @@ void BookManagement::editPriceBook(Data &data)
     }
     if (index < 0)
     {
-        g.tab(57);
+        g.tab(60);
         cout << "ID sach : '" << idBook << "' khong ton tai!!" << endl;
         return;
     }

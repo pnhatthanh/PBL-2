@@ -163,7 +163,7 @@ void Menu::orderMenu(Data &data)
         g.tab(72);cout<< "QUAN LI HOA DON" << endl;
         g.downLine(2);
         g.tab(60);cout << "-------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;///?
+        g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;//toi ni
         g.tab(60);cout << "|    2. Xuat hoa don cua khach hang       |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai          |" << endl;
         g.tab(60);cout << "-------------------------------------------" << endl;
@@ -246,10 +246,10 @@ void Menu::discountMenu(Data &data)
         g.tab(75);cout<<"QUAN LI MA GIAM GIA" << endl;
         g.downLine(2);
         g.tab(60);cout << "----------------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;//? sang mai
+        g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;
         g.tab(60);cout << "|    2. Xoa ma giam gia                            |" << endl;//?
         g.tab(60);cout << "|    3. Hien thi thong tin tat ca ma giam gia      |" << endl;
-        g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;//? sang mai
+        g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai                   |" << endl;
         g.tab(60);cout << "----------------------------------------------------" << endl;
         g.downLine(1);
