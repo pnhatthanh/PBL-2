@@ -15,11 +15,11 @@ void BookManagement::addbook(Data &data)
     g.tab(68);
     cout<<"Thong tin sach moi"<<endl;
     g.downLine(1);
+    cin.ignore();
     do{
         bool check=1;
         g.tab(60);
         cout << "Ma sach:        ";
-        cin.ignore();
         getline(cin,idBook);
         for(int i=0;i<data.getDataBook().size_list();i++){
             if(idBook==data.getDataBook()[i].getIDBook()){
