@@ -64,6 +64,13 @@ void Date::setDate()
         }
     }
 }
+void Date::localDate(){
+    time_t local = time(0);
+    tm *ltm = localtime(&local);
+    this->day=ltm->tm_mday;
+    this->month=1+ltm->tm_mon;
+    this->year=1900+ltm->tm_year;
+}
 ostream &operator<<(ostream &o, const Date &d)
 {
     o << setw(2)  << d.day << "/" << setw(2) << 

@@ -84,6 +84,7 @@ void BookManagement::addbook(Data &data)
     }while(price<0);
     Book b(idBook, nameBook, Category, nameAuthor, publishYear, quantity, price);
     data.getDataBook().addLast(b);
+    
     g.downLine(1);
     g.tab(55);
     cout << "--------THEM SACH THANH CONG!!!--------" << endl;

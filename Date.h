@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include<ctime>
 #include<iomanip>
 #include"Graphics.h"
 using namespace std;
@@ -18,6 +19,7 @@ class Date{
         int getYear();
         void setYear(int);
         void setDate();
+        void localDate();
         friend ostream& operator <<( ostream&, const Date&);
         bool checkDate();
         bool operator<=(const Date&);

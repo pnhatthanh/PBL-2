@@ -42,22 +42,18 @@ void OrderManagement::creatOrder(Data &data)
     }
     g.downLine(1);
     g.tab(68);cout << "THONG TIN DON HANG" << endl;
-    string idOrder;
-    do{
-        bool check=1;
-        g.tab(60);cout << "Ma don hang:        ";
-        getline(cin,idOrder);
-        for(int i=0;i<data.getDataOrder().size_list();i++){
-            if(idOrder==data.getDataOrder()[i].getIDOrder()){
-                check=0;
-            }
-        }
-        if(check==0){
-            g.tab(65);cout<<"Ma don hang da ton tai!"<<endl;
-        }else{
-            break;
-        }
-    }while(true);
+    int index=data.getDataOrder().size_list()-1;
+    string idOrder=data.getDataOrder()[index].getIDOrder();
+    index=(idOrder[2]-'0')*100+(idOrder[3]-'0')*10+(idOrder[4]-'0')+1;
+    idOrder="DH";
+    if(index<10){
+    	idOrder+="00"+to_string(index);
+	}else if(index>=10&&index<=99){
+		idOrder+="0"+to_string(index);
+	}else{
+		idOrder+=to_string(index);
+	}
+    g.tab(60);cout << "Ma don hang:   "<<idOrder<<endl;
     double totalPrice = 0;
     List<Book> &lb = data.getDataBook();
     while (true)
@@ -93,18 +89,19 @@ void OrderManagement::creatOrder(Data &data)
         g.tab(64);cout << "--> Them sach thanh cong! <--" << endl;
         totalPrice += lb[index].getPrice() * quantity;
         int choice;
-        g.tab(59);cout << "Nhap '1' de tiep tuc them sach- Nhan '0' de dung: ";
+        g.tab(55);cout << "Nhap '1' de tiep tuc them sach- Nhan '0' de dung: ";
         cin >> choice;
+        cin.ignore();
         if (choice == 0)
             break;
     }
-    g.tab(60);cout << "Thoi gian khoi tao don hang " << endl;
-    cin.ignore();
+    g.tab(60);cout << "Thoi gian khoi tao don hang: ";
     Date d;
-    g.tab(5);d.setDate();
+    d.localDate();
+    cout<<d<<endl;
     while (true)
     {
-        g.tab(60);cout<<"Ma giam gia: ";
+        g.tab(60);cout<<"Ma giam gia:   ";
         string idDiscount;
         getline(cin,idDiscount);
         if (idDiscount=="0")
@@ -112,6 +109,7 @@ void OrderManagement::creatOrder(Data &data)
             idDiscount = "0";
             Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
             data.getDataOrder().addLast(od);
+            g.tab(60);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
             g.tab(55);
             cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
             break;
@@ -143,6 +141,7 @@ void OrderManagement::creatOrder(Data &data)
                         totalPrice = totalPrice - dis;
                         Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
                         data.getDataOrder().addLast(od);
+                        g.tab(60);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
                         g.tab(55);
                         cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
                         break;

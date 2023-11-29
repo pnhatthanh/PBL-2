@@ -1,4 +1,5 @@
 #include"Data.h"
+#include<string>
 class OrderManagement{
     private:
         Graphics g;
