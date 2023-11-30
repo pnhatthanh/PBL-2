@@ -188,8 +188,6 @@ void Menu::orderMenu(Data &data)
             break;
         }
     } while (choice != 0);
-    system("cls");
-    this->mainMenu(data);
 }
 void Menu::statisticsMenu(Data &data)
 {
@@ -248,7 +246,7 @@ void Menu::discountMenu(Data &data)
         g.downLine(2);
         g.tab(60);cout << "----------------------------------------------------" << endl;
         g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;
-        g.tab(60);cout << "|    2. Xoa ma giam gia                            |" << endl;//?
+        g.tab(60);cout << "|    2. Xoa ma giam gia                            |" << endl;
         g.tab(60);cout << "|    3. Hien thi thong tin tat ca ma giam gia      |" << endl;
         g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai                   |" << endl;

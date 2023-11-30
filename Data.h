@@ -25,6 +25,12 @@ class Data{
         void readFileOrder();
         void readFileDiscount();
         void readFileDetailOrder();
+        void writeFileCustomer(Data&);
+        void writeFileBook(Data&);
+        void writeFileCategory(Data&);
+        void writeFileDetailOrder(Data&);
+        void writeFileDiscount(Data&);
+        void writeFileOrder(Data&);
         List<Customer>& getDataCustomer();
         List<Book>& getDataBook();
         List<Order>& getDataOrder();

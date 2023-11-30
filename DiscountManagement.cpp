@@ -105,7 +105,7 @@ void DiscountManagement::deleteDiscount(Data& data){
     getline(cin,nameDiscount);
     int index=-1;
     for(int i=0;i<ld.size_list();i++){
-        if(ld[i].getIDDiscount()==nameDiscount){
+        if(ld[i].getIDDiscount()==nameDiscount&&ld[i].getFlag()==1){
             index=i;
         }
     }
