@@ -1,4 +1,5 @@
 TN,Truyen ngan
-CNTT,Cong nghe thong tin
+KH-KT,Khoa hoc ki thuat
 KH-XH,Khoa hoc xa hoi
 TT,Truyen tranh
+GT,Giao trinh

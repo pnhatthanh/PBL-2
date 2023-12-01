@@ -84,7 +84,7 @@ void CustomerManagement::deleteCustomer(Data &data)
                 if(lc[index].getIDCustomer()==data.getDataOrder()[i].getIDCustomer()){
                     for(int j=0;j<data.getDataDetailOrder().size_list();j++){
                         if(data.getDataDetailOrder()[j].getIDOrder()==data.getDataOrder()[i].getIDOrder()){
-                            data.getDataOrder().remove(j);
+                            data.getDataDetailOrder().remove(j);
                         }
                     }
                     data.getDataOrder().remove(i);
@@ -92,6 +92,9 @@ void CustomerManagement::deleteCustomer(Data &data)
                 }
             }
             lc.remove(index);
+            data.writeFileOrder(data.getDataOrder());
+            data.writeFileDetailOrder(data.getDataDetailOrder());
+            data.writeFileCustomer(lc);
             g.tab(55);cout << "--------------XOA KHACH HANG THANH CONG!--------------" << endl;
         }
    

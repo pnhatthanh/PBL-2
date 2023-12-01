@@ -85,6 +85,7 @@ void DiscountManagement::addDisscount(Data& data){
     int flag=1;
     Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.getDataDiscount().addLast(dis);
+    data.writeFileDiscount(data.getDataDiscount());
     g.downLine(1);
     g.tab(59);
     cout << "--------THEM MA GIAM GIA THANH CONG!!!--------" << endl;
@@ -115,6 +116,7 @@ void DiscountManagement::deleteDiscount(Data& data){
         return;
     }
     data.getDataDiscount()[index].setFlag(0);
+    data.writeFileDiscount(data.getDataDiscount());
     g.tab(57);
     cout << "Xoa ma giam gia thanh cong!!!" << endl;
 }
@@ -246,6 +248,7 @@ void DiscountManagement::editDiscount(Data &data){
     int flag=1;
     Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.updateDiscount(index,dis);
+    data.writeFileDiscount(data.getDataDiscount());
     g.downLine(1);
     g.tab(59);
     cout << "--------CAP NHAT MA GIAM GIA THANH CONG!!!--------" << endl;

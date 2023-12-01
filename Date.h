@@ -20,6 +20,7 @@ class Date{
         void setYear(int);
         void setDate();
         void localDate();
+        string convertToString();
         friend ostream& operator <<( ostream&, const Date&);
         bool checkDate();
         bool operator<=(const Date&);

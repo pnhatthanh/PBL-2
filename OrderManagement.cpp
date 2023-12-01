@@ -39,6 +39,7 @@ void OrderManagement::creatOrder(Data &data)
         getline(cin,email);
         Customer cs(idCustomer, name, address, phone, email);
         data.getDataCustomer().addLast(cs);
+        data.writeFileCustomer(data.getDataCustomer());
     }
     g.downLine(1);
     g.tab(68);cout << "THONG TIN DON HANG" << endl;
@@ -64,7 +65,7 @@ void OrderManagement::creatOrder(Data &data)
         int index = -1;
         for (int i = 0; i < lb.size_list(); i++)
         {
-            if (nameBook == lb[i].getNameBook())
+            if (nameBook == lb[i].getNameBook()&&lb[i].getFlag()==1)
             {
                 index = i;
             }
@@ -84,8 +85,10 @@ void OrderManagement::creatOrder(Data &data)
         }
         string idBook = lb[index].getIDBook();
         data.decreaseQuantityOfBook(idBook, quantity);
+        data.writeFileBook(data.getDataBook()); 
         DetailOrder detailOrder(idOrder, nameBook, quantity);
         data.getDataDetailOrder().addLast(detailOrder);
+        data.writeFileDetailOrder(data.getDataDetailOrder());
         g.tab(64);cout << "--> Them sach thanh cong! <--" << endl;
         totalPrice += lb[index].getPrice() * quantity;
         int choice;
@@ -108,8 +111,9 @@ void OrderManagement::creatOrder(Data &data)
         {
             idDiscount = "0";
             Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
-            data.getDataOrder().addLast(od);
             g.tab(60);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
+            data.getDataOrder().addLast(od);
+            data.writeFileOrder(data.getDataOrder());
             g.tab(55);
             cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
             break;
@@ -121,7 +125,7 @@ void OrderManagement::creatOrder(Data &data)
             for (int i = 0; i < ld.size_list(); i++)
             {
                 string tmp=ld[i].getIDDiscount();
-                if (idDiscount == tmp)
+                if (idDiscount == tmp&&ld[i].getFlag()==1)
                 {
                     index = i;
                 }
@@ -140,8 +144,9 @@ void OrderManagement::creatOrder(Data &data)
                         double dis = ld[index].getDiscount();
                         totalPrice = totalPrice - dis;
                         Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
-                        data.getDataOrder().addLast(od);
                         g.tab(60);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
+                        data.getDataOrder().addLast(od);
+                        data.writeFileOrder(data.getDataOrder());
                         g.tab(55);
                         cout << "--------TAO DON HANG THANH CONG!!!--------" << endl;
                         break;

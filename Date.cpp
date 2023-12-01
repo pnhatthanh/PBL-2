@@ -77,6 +77,23 @@ ostream &operator<<(ostream &o, const Date &d)
     d.month << "/" << setw(4) << d.year;
     return o;
 }
+string Date::convertToString(){
+    string res="";
+    if(this->day<9){
+        res+="0"+to_string(this->day);
+    }else{
+        res+=to_string(this->day);
+    }
+    res+="/";
+    if(this->month<9){
+        res+="0"+to_string(this->month);
+    }else{
+        res+=to_string(this->month);
+    }
+    res+="/";
+    res+=to_string(this->year);
+    return res;
+}
 bool Date::checkDate()
 {
     switch (this->month)

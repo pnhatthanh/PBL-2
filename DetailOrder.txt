@@ -1,5 +1,15 @@
-DH1,Mat biec,1
-DH1,Python co ban,1
-DH2,Ban chi tuong la minh dang rat co gang,1
-DH2,Python co ban,1
-DH3,Lap trinh C can ban,1
+DH001,Mat biec,1
+DH001,Python co ban,1
+DH001,10 van cau hoi vi sao,1
+DH002,Ba dieu uoc,1
+DH002,Lap trinh C can ban,1
+DH003,Python co ban,2
+DH004,Mat biec,2
+DH004,Lap trinh C can ban ,1
+DH005,Trang quynh,5
+DH005,Toi thay hoa vang tren co xanh,2
+DH005,Python co ban,1
+DH005,10 van cau hoi vi sao,2
+DH006,Ba dieu uoc,3
+DH006,Ban khong thong minh lam dau,1
+DH006,Tu duy phan bien,1

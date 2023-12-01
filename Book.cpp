@@ -1,6 +1,6 @@
 #include "Book.h"
-Book::Book(string a, string b, string c, string d, int e, int f, double g)
-    : idBook(a), nameBook(b), idCategory(c), nameAuthor(d), publishYear(e), quanity(f), price(g)
+Book::Book(string a, string b, string c, string d, int e, int f, double g, int flag)
+    : idBook(a), nameBook(b), idCategory(c), nameAuthor(d), publishYear(e), quanity(f), price(g),flag(flag)
 { }
 Book::~Book()
 { }
@@ -59,6 +59,12 @@ double Book::getPrice()
 void Book::setPrice(double new_value)
 {
     if(new_value >= 0) this->price = new_value;
+}
+int Book::getFlag(){
+    return this->flag;
+}
+void Book::setFlag(int f){
+    this->flag=f;
 }
 void Book::decreaseQuantity(int q){
     this->quanity=this->quanity-q;

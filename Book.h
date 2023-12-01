@@ -9,8 +9,9 @@ class Book
         int publishYear;
         int quanity;
         double price;
+        int flag;
     public:
-        Book(string = "", string = "", string="", string = "", int=0, int = 0, double = 0);
+        Book(string = "", string = "", string="", string = "", int=0, int = 0, double = 0,int=0);
         ~Book();
         string getIDBook();
         void setIDBook(string);
@@ -26,6 +27,8 @@ class Book
         void setQuantity(int);
         double getPrice();
         void setPrice(double);
+        int getFlag();
+        void setFlag(int);
         void decreaseQuantity(int);
         bool operator ==(const Book&);
 };

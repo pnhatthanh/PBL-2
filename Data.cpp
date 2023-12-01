@@ -33,6 +33,7 @@ void Data::readFileBook(){
         int publishYear;
         int quanity;
         double price;
+        int flag;
         getline(f,idBook,',');
         getline(f,nameBook,',');
         getline(f,idCategory,',');
@@ -43,7 +44,9 @@ void Data::readFileBook(){
         f.ignore(1);
         f>>price;
         f.ignore(1);
-        Book b(idBook,nameBook,idCategory,idAuthor,publishYear,quanity,price);
+        f>>flag;
+        f.ignore(1);
+        Book b(idBook,nameBook,idCategory,idAuthor,publishYear,quanity,price,flag);
         this->dataBook.addLast(b);
     }
     f.close();
@@ -166,130 +169,73 @@ void Data::decreaseQuantityOfBook(string idBook, int quantity){
 void Data::updateDiscount(int index, Discount dis){
     this->dataDiscount[index]=dis;
 }
-void Data::writeFileCustomer(Data &data)
+void Data::writeFileCustomer(List<Customer>& customer)
 {
-    string id;
-    string fullName;
-    string address;
-    string phoneNumber;
-    string email;
     ofstream f;
     f.open("Customer.txt", ios::trunc);
-    for (int i = 0; i < data.getDataCustomer().size_list(); i++)
+    for (int i = 0; i < customer.size_list(); i++)
     {
-        id = data.getDataCustomer()[i].getIDCustomer();
-        fullName = data.getDataCustomer()[i].getFullName();
-        address = data.getDataCustomer()[i].getAddress();
-        phoneNumber = data.getDataCustomer()[i].getPhoneNumber();
-        email = data.getDataCustomer()[i].getEmail();
-        f << id << "," << fullName << ",";
-        f << address << "," << phoneNumber << ",";
-        f << email << endl;
+       
+        f << customer[i].getIDCustomer() << "," << customer[i].getFullName() << ",";
+        f << customer[i].getAddress() << "," << customer[i].getPhoneNumber() << ",";
+        f << customer[i].getEmail() << endl;
     }
     f.close();
 }
-void Data::writeFileBook(Data &data)
+void Data::writeFileBook(List<Book>& book)
 {
-    string idBook;
-    string NameBook;
-    string idCategory;
-    string NameAuthor;
-    int PublishYear;
-    int Quantity;
-    double Price;
     ofstream f;
     f.open("Book.txt", ios::trunc);
-    for (int i = 0; i < data.getDataBook().size_list(); i++)
+    for (int i = 0; i < book.size_list(); i++)
     {
-        idBook = data.getDataBook()[i].getIDBook();
-        NameBook = data.getDataBook()[i].getNameBook();
-        idCategory = data.getDataBook()[i].getIDCategory();
-        NameAuthor = data.getDataBook()[i].getNameAuthor();
-        PublishYear = data.getDataBook()[i].getPublishYear();
-        Quantity = data.getDataBook()[i].getQuantity();
-        Price = data.getDataBook()[i].getPrice();
-        f << idBook << "," << NameBook << ",";
-        f << idCategory << "," << NameAuthor << ",";
-        f << PublishYear << "," << Quantity << "," << Price << endl;
+        f << book[i].getIDBook() << "," << book[i].getNameBook() << ",";
+        f << book[i].getIDCategory() << "," << book[i].getNameAuthor() << ",";
+        f << book[i].getPublishYear() << "," << book[i].getQuantity() << "," << book[i].getPrice()<<"," <<book[i].getFlag()<< endl;
     }
     f.close();
 }
-void Data::writeFileCategory(Data &data)
+void Data::writeFileCategory(List<Category>& category)
 {
-    string idCategory;
-    string nameCategory;
     ofstream f;
     f.open("Category.txt", ios::trunc);
-    for (int i = 0; i < data.getDataCategory().size_list(); i++)
+    for (int i = 0; i < category.size_list(); i++)
     {
-        idCategory = data.getDataCategory()[i].getIDCategory();
-        nameCategory = data.getDataCategory()[i].getNameCategory();
-        f << idCategory << "," << nameCategory << endl;
+        f << category[i].getIDCategory() << "," << category[i].getNameCategory() << endl;
     }
     f.close();
+
 }
-void Data::writeFileDetailOrder(Data &data)
+void Data::writeFileDetailOrder(List<DetailOrder>& detail)
 {
-    string idOrder;
-    string nameBook;
-    int quantityBook;
     ofstream f;
     f.open("DetailOrder.txt", ios::trunc);
-    for (int i = 0; i < data.getDataDetailOrder().size_list(); i++)
+    for (int i = 0; i < detail.size_list(); i++)
     {
-        idOrder = data.getDataDetailOrder()[i].getIDOrder();
-        nameBook = data.getDataDetailOrder()[i].getNameBook();
-        quantityBook = data.getDataDetailOrder()[i].getQuantityBook();
-        f << idOrder << "," << nameBook << "," << quantityBook << endl;
+        f << detail[i].getIDOrder() << "," << detail[i].getNameBook() << "," << detail[i].getQuantityBook() << endl;
     }
     f.close();
 }
-void Data::writeFileDiscount(Data &data)
+//convert date de luu ra file
+void Data::writeFileDiscount(List<Discount>& discount)
 {
-    string idDiscount;
-    double discount;
-    double level;
-    int quantity;
-    Date firstDate;
-    Date lastDate;
-    string status;
-    int flag;
     ofstream f;
     f.open("Discount.txt", ios::trunc);
-    for (int i = 0; i < data.getDataDiscount().size_list(); i++)
+    for (int i = 0; i < discount.size_list(); i++)
     {
-        idDiscount = data.getDataDiscount()[i].getIDDiscount();
-        discount = data.getDataDiscount()[i].getDiscount();
-        level = data.getDataDiscount()[i].getLevel();
-        quantity = data.getDataDiscount()[i].getQuantity();
-        firstDate = data.getDataDiscount()[i].getFirstDate();
-        lastDate = data.getDataDiscount()[i].getLastDate();
-        status = data.getDataDiscount()[i].getStatus();
-        flag=data.getDataDiscount()[i].getFlag();
-        f << idDiscount << "," << discount << ",";
-        f << level << "," << quantity << ",";
-        f << firstDate << "," << lastDate << "," << status << ","<<flag<<endl;
+        f << discount[i].getIDDiscount() << "," << discount[i].getDiscount() << ",";
+        f << discount[i].getLevel() << "," << discount[i].getQuantity() << ",";
+        f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus() << ","<<discount[i].getFlag()<<endl;
     }
     f.close();
 }
-void Data::writeFileOrder(Data &data)
+void Data::writeFileOrder(List<Order>& order)
 {
-    string idOrder;
-    string idCustomer;
-    Date date;
-    string idDiscount;
-    double totalPrice;
     ofstream f;
     f.open("Order.txt", ios::trunc);
-    for (int i = 0; i < data.getDataOrder().size_list(); i++)
+    for (int i = 0; i < order.size_list(); i++)
     {
-        idOrder = data.getDataOrder()[i].getIDOrder();
-        idCustomer = data.getDataOrder()[i].getIDCustomer();
-        date = data.getDataOrder()[i].getDate();
-        idDiscount = data.getDataOrder()[i].getIDDiscount();
-        totalPrice = data.getDataOrder()[i].getTotalPrice();
-        f << idOrder << "," << idCustomer << ",";
-        f << date << "," << idDiscount << "," << totalPrice << endl;
+        f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
+        f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << "," << order[i].getTotalPrice() << endl;
     }
     f.close();
 }

@@ -16,6 +16,7 @@ void BookManagement::addbook(Data &data)
     cout<<"Thong tin sach moi"<<endl;
     g.downLine(1);
     cin.ignore();
+    //Ma sach tu sinh
     do{
         bool check=1;
         g.tab(60);
@@ -82,9 +83,10 @@ void BookManagement::addbook(Data &data)
             cout<<"Gia sach khong hop le!"<<endl;
         }
     }while(price<0);
-    Book b(idBook, nameBook, Category, nameAuthor, publishYear, quantity, price);
+    int flag=1;
+    Book b(idBook, nameBook, Category, nameAuthor, publishYear, quantity, price,flag);
     data.getDataBook().addLast(b);
-    
+    data.writeFileBook(data.getDataBook());
     g.downLine(1);
     g.tab(55);
     cout << "--------THEM SACH THANH CONG!!!--------" << endl;
@@ -107,7 +109,7 @@ void BookManagement::deleteBook(Data &data)
     int index = -1;
     for (int i = 0; i < book.size_list(); i++)
     {
-        if (nameBook == book[i].getNameBook())
+        if (nameBook == book[i].getNameBook()&&book[i].getFlag()==1)
         {
             index = i;
         }
@@ -120,9 +122,10 @@ void BookManagement::deleteBook(Data &data)
     }
     else
     {
-        data.getDataBook().remove(index);
-        g.tab(57);
-        cout << "Xoa sach thanh cong!" << endl;
+        data.getDataBook()[index].setFlag(0);
+        data.writeFileBook(data.getDataBook());
+        g.tab(55);
+        cout << "--------XOA SACH THANH CONG!!!--------" << endl;
     }
 }
 void BookManagement::showBook(Data &data)
@@ -139,17 +142,18 @@ void BookManagement::showBook(Data &data)
     List<Category> &category = data.getDataCategory();
     for (int i = 0; i < book.size_list(); i++)
     {
-
-        g.tab(18);cout << "|" << left << setw(8) << book[i].getIDBook() << "|" << left << setw(40) << book[i].getNameBook() << "|";
-        for (int j = 0; j < category.size_list(); j++)
-        {
-            if (book[i].getIDCategory() == category[j].getIDCategory())
+        if(book[i].getFlag()==1){
+            g.tab(18);cout << "|" << left << setw(8) << book[i].getIDBook() << "|" << left << setw(40) << book[i].getNameBook() << "|";
+            for (int j = 0; j < category.size_list(); j++)
             {
-                cout << left << setw(26) << category[j].getNameCategory() << "|";
+                if (book[i].getIDCategory() == category[j].getIDCategory())
+                {   
+                    cout << left << setw(26) << category[j].getNameCategory() << "|";
+                }
             }
+            cout << left << setw(20) << book[i].getNameAuthor() << "|" << left << setw(14) << book[i].getPublishYear() << "|";
+            cout << left << setw(15) << book[i].getQuantity() << "|" << left << setw(10) << book[i].getPrice() << "|" << endl;
         }
-        cout << left << setw(20) << book[i].getNameAuthor() << "|" << left << setw(14) << book[i].getPublishYear() << "|";
-        cout << left << setw(15) << book[i].getQuantity() << "|" << left << setw(10) << book[i].getPrice() << "|" << endl;
     }
     g.tab(18);cout << "==============================================================================================";
     cout << "===============================================" << endl;
@@ -172,7 +176,7 @@ void BookManagement::editPriceBook(Data &data)
     int index = -1;
     for (int i = 0; i < data.getDataBook().size_list(); i++)
     {
-        if (idBook == data.getDataBook()[i].getIDBook())
+        if (idBook == data.getDataBook()[i].getIDBook()&&data.getDataBook()[i].getFlag()==1)
         {
             index = i;
             break;
@@ -199,9 +203,11 @@ void BookManagement::editPriceBook(Data &data)
     cout << "Nhap gia sach moi(VND): ";
     cin >> new_Price;
     data.getDataBook()[index].setPrice(new_Price);
+    data.writeFileBook(data.getDataBook());
     g.downLine(1);
     g.tab(55);
     cout << "--------SUA GIA SACH THANH CONG!--------" << endl;
+    cin.ignore();
 }
 void BookManagement::showBookByCategory(Data &data)
 {
@@ -241,7 +247,7 @@ void BookManagement::showBookByCategory(Data &data)
     cout << "|ID sach     |Ten sach                                |Ma the loai    |Tac gia        |" << endl;
     for (int i = 0; i < book.size_list(); i++)
     {
-        if (book[i].getIDCategory() == idCategory)
+        if (book[i].getIDCategory() == idCategory&&book[i].getFlag()==1)
         {
             check = true;
             g.tab(43);
@@ -288,7 +294,7 @@ void BookManagement::searchByAuthor(Data &data)
         cout << "|ID sach     |Ten sach                                |Ma the loai   |Tac gia             |" << endl;
         for (int i = 0; i < book.size_list(); i++)
         {
-            if (book[i].getNameAuthor() == nameAuthor)
+            if (book[i].getNameAuthor() == nameAuthor&&book[i].getFlag()==1)
             {
                 g.tab(40);
                 cout << "|" << left << setw(12) << book[i].getIDBook() << "|" << left << setw(40) << book[i].getNameBook();

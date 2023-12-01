@@ -1,4 +1,8 @@
 #include "Menu.h"
+
+
+//Chinh sua menu nhan chu la nhap lai
+
 void Menu::mainMenu(Data &data)
 {
     int choice;
@@ -109,6 +113,7 @@ void Menu::bookMenu(Data &data)
         case 1:
             system("cls");
             book.addbook(data);
+            cin.ignore(1);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
@@ -116,13 +121,13 @@ void Menu::bookMenu(Data &data)
         case 2:
             system("cls");
             book.deleteBook(data);
+            cin.ignore(1);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
             break;
         case 3:
             system("cls");
             book.editPriceBook(data);
-            cin.ignore();
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore();
