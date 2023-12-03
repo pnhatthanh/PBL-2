@@ -122,11 +122,26 @@ void BookManagement::deleteBook(Data &data)
     }
     else
     {
-        data.getDataBook()[index].setFlag(0);
-        data.writeFileBook(data.getDataBook());
-        g.tab(55);
-        cout << "--------XOA SACH THANH CONG!!!--------" << endl;
+        g.tab(72);
+        cout<<"THONG TIN SACH"<<endl;
+        g.tab(66);
+        cout << "Ten sach:       " << data.getDataBook()[index].getNameBook() <<endl;
+        g.tab(66);
+        cout << "Tac gia:        " << data.getDataBook()[index].getNameAuthor() <<endl;
+        g.tab(66);
+        cout << "Nam xuat ban:   " << data.getDataBook()[index].getPublishYear() <<endl;
+        g.tab(56);cout<<"Ban co chac chan muon xoa ma giam gia nay khong (y/n)? "<<endl;
+        g.tab(76);cout<<"1. Yes"<<endl;
+        g.tab(76);cout<<"2. No"<<endl;
+        int n;
+        g.tab(71);cout<<"Nhap lua chon: ";cin>>n;
+        if(n==1){
+            data.getDataBook()[index].setFlag(0);
+            data.writeFileBook(data.getDataBook());
+            g.tab(55);cout << "--------------XOA SACH THANH CONG!--------------" << endl;
+        }
     }
+    cin.ignore();
 }
 void BookManagement::showBook(Data &data)
 {
@@ -236,7 +251,7 @@ void BookManagement::showBookByCategory(Data &data)
     }
     if (check != true)
     {
-        g.tab(57);
+        g.tab(70);
         cout << "The loai: " << nameCategory << " khong ton tai!!" << endl;
         return;
     }
@@ -283,8 +298,8 @@ void BookManagement::searchByAuthor(Data &data)
     }
     if (check != true)
     {
-        g.tab(57);
-        cout << "Tac gia " << nameAuthor << " khong ton tai!" << endl;
+        g.tab(70);
+        cout << "Tac gia: " << nameAuthor << " khong ton tai!" << endl;
     }
     else
     {

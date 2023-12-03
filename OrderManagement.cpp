@@ -105,9 +105,9 @@ void OrderManagement::creatOrder(Data &data)
     while (true)
     {
         g.tab(60);cout<<"Ma giam gia:   ";
-        string idDiscount;
+        string idDiscount="";
         getline(cin,idDiscount);
-        if (idDiscount=="0")
+        if (idDiscount=="")
         {
             idDiscount = "0";
             Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
@@ -164,56 +164,84 @@ void OrderManagement::creatOrder(Data &data)
         }
     }
 }
+void OrderManagement::listOrder(Data &data){
+    g.tab(71);
+    cout << " --------------------" << endl;
+    g.tab(71);
+    cout << "| DANH SACH HOA DON |" << endl;
+    g.tab(71);
+    cout << " --------------------" << endl;
+    List<Order> order=data.getDataOrder();
+    g.downLine(1);
+    g.tab(50);cout<<"====================================================================="<<endl;
+    g.tab(50);cout<<"|Ma don hang   |Ma khach hang   |Ngay mua hang   |Tong tien(VND)    |"<<endl;
+    g.tab(50);cout<<"---------------------------------------------------------------------"<<endl;
+    for(int i=0;i<order.size_list();i++){
+        g.tab(50);cout<<"|"<<left<<setw(14)<<order[i].getIDOrder()<<"|"<<left<<setw(16)<<order[i].getIDCustomer();
+        cout<<"|"<<order[i].getDate()<<"      |"<<left<<setw(18)<<order[i].getTotalPrice()<<"|"<<endl;
+    }
+    g.tab(50);cout<<"====================================================================="<<endl;
+    g.tab(56);cout<<"Ban co chac chan muon xem chi tiet don hang khong (y/n)? "<<endl;
+    g.tab(76);cout<<"1. Yes"<<endl;
+    g.tab(76);cout<<"2. No"<<endl;
+    int n;
+    g.tab(71);cout<<"Nhap lua chon: ";cin>>n;
+    if(n==1){
+        g.downLine(1);
+        this->showOrder(data);
+        return;
+    }
+    cin.ignore();
+}
 void OrderManagement::showOrder(Data &data)
 {
-    g.tab(71); cout << "HOA DON KHACH HANG" << endl;
-    g.tab(57); cout << "Nhap ho ten khach hang: ";
+    g.tab(71); cout << "CHI TIET DON HANG" << endl;
+    g.tab(68); cout << "Nhap ma hoa don: ";
     cin.ignore();
-    string name;
-    getline(cin, name);
-    g.downLine(1);
-    int index = -1;
-    List<Customer>& customer = data.getDataCustomer();
-    for (int i = 0; i < customer.size_list(); i++)
+    string idOrder;
+    getline(cin, idOrder);
+    int index=-1;
+    List<Order>& order = data.getDataOrder();
+    for (int i = 0; i < order.size_list(); i++)
     {
-        if (name == customer[i].getFullName())
+        if (idOrder == order[i].getIDOrder())
         {
             index = i;
+            break;
         }
     }
     if (index < 0)
     {
-        g.tab(64);cout << "Khach hang khong ton tai" << endl;
+        g.tab(64);cout << "Ma don hang: " <<"'"<<idOrder<<"'"<< " khong ton tai!" << endl;
         return;
     }
-    string id = customer[index].getIDCustomer();
-    int index2 = -1;
-    List<Order>& order = data.getDataOrder();
-    for (int i = 0; i < order.size_list(); i++)
-    {
-        if (id == order[i].getIDCustomer())
-        {
-            index2 = i;
+    int index2=-1;
+    List<Customer> customer=data.getDataCustomer();
+    for(int i=0;i<customer.size_list();i++){
+        if(order[index].getIDCustomer()==customer[i].getIDCustomer()){
+            index2=i;
+            break;
         }
     }
-    if (index2 < 0)
-    {
-        g.tab(64);cout << "Don hang cua khac hang: " << customer[index].getFullName() << " khong ton tai!" << endl;
+    if(index2<0){
+        g.tab(64);cout<<"Khach hang khong ton tai!"<<endl;
         return;
     }
-    g.tab(68);cout << "Thong tin khach hang"<<endl; g.downLine(1);
-    g.tab(60);cout << "Ho ten khach hang:   " << customer[index].getFullName() << endl;
-    g.tab(60);cout << "Dia chi:             " << customer[index].getAddress() << endl;
-    g.tab(60);cout << "So dien thoai:       " << customer[index].getPhoneNumber() << endl;
+    g.downLine(1);
+    g.tab(68);cout << "Thong tin khach hang"<<endl; 
+    g.tab(60);cout << "Ho ten khach hang:   " << customer[index2].getFullName() << endl;
+    g.tab(60);cout << "Dia chi:             " << customer[index2].getAddress() << endl;
+    g.tab(60);cout << "So dien thoai:       " << customer[index2].getPhoneNumber() << endl;
     g.downLine(1);
     g.tab(68);cout << "Thong tin don hang" << endl;
+    g.tab(65);cout << "Ngay mua sach: "<< order[index].getDate()<<endl;
     g.tab(45);cout << "=================================================================" << endl;
     g.tab(45);cout << "|Ten sach                           |Don gia(VND)   |So luong   |" << endl;
     g.tab(45);cout << "-----------------------------------------------------------------" << endl;
     List<DetailOrder>& detail=data.getDataDetailOrder();
     List<Book>& book=data.getDataBook();
     for(int i=0;i<detail.size_list();i++){
-        if(order[index2].getIDOrder()==detail[i].getIDOrder()){
+        if(order[index].getIDOrder()==detail[i].getIDOrder()){
             g.tab(45);cout<<"|"<<left<<setw(35)<<detail[i].getNameBook();
             for(int j=0;j<book.size_list();j++){
                 if(detail[i].getNameBook()==book[j].getNameBook()){
@@ -225,10 +253,10 @@ void OrderManagement::showOrder(Data &data)
     }
     g.tab(45);cout << "=================================================================" << endl;
     for(int i=0;i<data.getDataDiscount().size_list();i++){
-        if(data.getDataDiscount()[i].getIDDiscount()==order[index2].getIDDiscount()){
-            g.tab(81);cout<<"Giam gia:  "<<data.getDataDiscount()[i].getDiscount()<<"VND"<<endl;
+        if(data.getDataDiscount()[i].getIDDiscount()==order[index].getIDDiscount()){
+            g.tab(81);cout<<"Giam gia:  "<<data.getDataDiscount()[i].getDiscount()<<" VND"<<endl;
             break;
         }
     }
-    g.tab(81);cout << "Tong tien: " << order[index2].getTotalPrice() << "VND" << endl;
+    g.tab(81);cout << "Tong tien: " << order[index2].getTotalPrice() << " VND" << endl;
 }

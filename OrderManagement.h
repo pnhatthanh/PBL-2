@@ -5,5 +5,6 @@ class OrderManagement{
         Graphics g;
     public:
         void creatOrder(Data&);
+        void listOrder(Data&);
         void showOrder(Data&);
 };

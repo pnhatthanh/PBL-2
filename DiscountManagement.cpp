@@ -115,10 +115,31 @@ void DiscountManagement::deleteDiscount(Data& data){
         g.tab(65);cout<<"Ma giam gia khong ton tai!!!"<<endl;
         return;
     }
-    data.getDataDiscount()[index].setFlag(0);
-    data.writeFileDiscount(data.getDataDiscount());
-    g.tab(57);
-    cout << "Xoa ma giam gia thanh cong!!!" << endl;
+    g.tab(72);
+    cout<<"THONG TIN MA GIAM GIA"<<endl;    
+    g.tab(65);
+    cout << "Muc giam gia(VND):       "<<ld[index].getDiscount()<<" VND"<<endl;
+    g.tab(65);
+    cout << "So tien toi thieu(VND):  "<<ld[index].getLevel()<<" VND"<<endl;
+    g.tab(65);
+    cout << "So luong ma giam gia:    "<<ld[index].getQuantity()<<endl;
+    g.tab(65);
+    cout << "Ngay bat dau:            "<<ld[index].getFirstDate()<<endl;
+    g.tab(65);
+    cout << "Ngay ket thuc:           "<<ld[index].getLastDate()<<endl;
+    g.tab(65);
+    cout << "Trang thai ma giam gia:  "<<ld[index].getStatus()<<endl;
+    g.tab(56);cout<<"Ban co chac chan muon xoa ma giam gia nay khong (y/n)? "<<endl;
+    g.tab(76);cout<<"1. Yes"<<endl;
+    g.tab(76);cout<<"2. No"<<endl;
+    int n;
+    g.tab(71);cout<<"Nhap lua chon: ";cin>>n;
+    if(n==1){
+        data.getDataDiscount()[index].setFlag(0);
+        data.writeFileDiscount(data.getDataDiscount());
+        g.tab(55);cout << "--------------XOA MA GIAM GIA THANH CONG!--------------" << endl;
+    }
+    cin.ignore();
 }
 
 void DiscountManagement::showDiscount(Data &data){
@@ -235,6 +256,7 @@ void DiscountManagement::editDiscount(Data &data){
     g.tab(65);
     cout << "Ngay ket thuc:           ";cin>>c;
     if(c=='y'){
+        cin.ignore();
         g.tab(12);lastDate.setDate();
     }else{
         cin.ignore();

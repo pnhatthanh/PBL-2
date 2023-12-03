@@ -72,7 +72,6 @@ void Menu::customerMenu(Data &data)
             case 2:
                 system("cls");
                 customer.deleteCustomer(data);
-                cin.ignore();
                 g.downLine(1);
                 g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
                 cin.ignore();
@@ -121,9 +120,9 @@ void Menu::bookMenu(Data &data)
         case 2:
             system("cls");
             book.deleteBook(data);
-            cin.ignore(1);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            cin.ignore(1);
             break;
         case 3:
             system("cls");
@@ -169,7 +168,7 @@ void Menu::orderMenu(Data &data)
         g.downLine(2);
         g.tab(60);cout << "-------------------------------------------" << endl;
         g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;
-        g.tab(60);cout << "|    2. Xuat hoa don cua khach hang       |" << endl;
+        g.tab(60);cout << "|    2. Danh sach hoa don cua khach hang  |" << endl;
         g.tab(60);cout << "|    0. Nhap '0' de quay tro lai          |" << endl;
         g.tab(60);cout << "-------------------------------------------" << endl;
         g.downLine(1);
@@ -186,7 +185,7 @@ void Menu::orderMenu(Data &data)
             break;
         case 2:
             system("cls");
-            order.showOrder(data);
+            order.listOrder(data);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);

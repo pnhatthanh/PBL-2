@@ -1,12 +1,13 @@
 S1,Mat biec,TN,Nguyen Nhat Anh,1980,100,85000,1
 S2,Lap trinh C can ban,GT,Pham Van At,2023,90,158000,1
-S3,Toi thay hoa vang ten co xanh,TN,Nguyen Nhat Anh,2010,150,88000,1
-S4,Ban chi tuong la minh dang rat co gang,KH-XH,Ly Thuong Long,2021,50,105000,1
+S3,Toi thay hoa vang tren co xanh,TN,Nguyen Nhat Anh,2010,150,88000,1
+S4,Ban chi tuong la minh dang rat co gang,KH-XH,Ly Thuong Long,2021,50,107000,1
 S5,Python co ban,GT,Bui Viet Ha,2023,80,113000,1
-S6,Cho toi xin mot ve di tuoi tho,TN,Nguyen Nhat Anh,2008,120,82000,1
+S6,Cho toi xin mot ve di tuoi tho,TN,Nguyen Nhat Anh,2008,119,82000,1
 S7,Ban khong thong minh lam dau,KH-XH,David McRaney,2011,100,112000,1
-S8,Tu duy phan bien,KH-XH,Zoe MCkey,2019,30,60000,1
-S9,Ba dieu uoc,TT,NXB Tre,2018,30,22000,1
+S8,Tu duy phan bien,KH-XH,Zoe MCkey,2019,28,60000,1
+S9,Ba dieu uoc,TT,NXB Tre,2018,28,22000,1
 S10,Trang quynh,TT,NXB Kim Dong,2003,40,15000,1
 S11,Ban thiet ke vi dai,KH-KT,William Hawking,2010,30,90000,1
 S12,10 van cau hoi vi sao,KH-KT,Duc Anh,2005,40,65000,1
+S13,Tu tuong Ho Chi Minh,GT,NXB Chinh tri,2005,20,57000,1

@@ -25,7 +25,7 @@ void CustomerManagement::searchCustomer(Data &data)
     }
     if (index < 0){
         g.downLine(1);
-        g.tab(60);cout << "Khach hang ban tim kiem khong ton tai!!" << endl;
+        g.tab(63);cout << "Khach hang ban tim kiem khong ton tai!!" << endl;
     }
     else
     {
@@ -63,7 +63,7 @@ void CustomerManagement::deleteCustomer(Data &data)
         }
     }
     if (index < 0){
-        g.tab(64);
+        g.tab(62);
         cout << "Khach hang ban muon xoa khong ton tai!!" << endl;
     }
     else
@@ -78,13 +78,14 @@ void CustomerManagement::deleteCustomer(Data &data)
         g.tab(76);cout<<"1. Yes"<<endl;
         g.tab(76);cout<<"2. No"<<endl;
         int n;
-        g.tab(71);cout<<"Nhap kua chon: ";cin>>n;
+        g.tab(71);cout<<"Nhap lua chon: ";cin>>n;
         if(n==1){
             for(int i=0;i<data.getDataOrder().size_list();i++){
                 if(lc[index].getIDCustomer()==data.getDataOrder()[i].getIDCustomer()){
                     for(int j=0;j<data.getDataDetailOrder().size_list();j++){
                         if(data.getDataDetailOrder()[j].getIDOrder()==data.getDataOrder()[i].getIDOrder()){
                             data.getDataDetailOrder().remove(j);
+                            j--;
                         }
                     }
                     data.getDataOrder().remove(i);
@@ -96,8 +97,9 @@ void CustomerManagement::deleteCustomer(Data &data)
             data.writeFileDetailOrder(data.getDataDetailOrder());
             data.writeFileCustomer(lc);
             g.tab(55);cout << "--------------XOA KHACH HANG THANH CONG!--------------" << endl;
+           
         }
-   
+        cin.ignore();
     }
 }
 void CustomerManagement::showCustomer(Data &data)

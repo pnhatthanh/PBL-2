@@ -4,3 +4,4 @@ KH3,Nguyen Van Cong,Hue,0365487512,congvan87@gmail.com
 KH4,Le Trung Hieu,Quang Binh,0986554231,hieutrung06@gmail.com
 KH5,Pham Nhat Thanh,Quang Binh,0356448221,thanhbk12@gmail.com
 KH6,Tran Ho Dinh Tuan,Quang Nam,098667432,tuanqn04@gmail.com
+KH7,Nguyen The Quang,Ha Tinh,0968435667,quangthe7@gmail.com

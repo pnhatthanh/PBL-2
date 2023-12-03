@@ -91,15 +91,14 @@ void Statistics::listBestSeller(Data &data){
       }
    }
    for(int i=0;i<map.size_list()-1;i++){
-      int res=i;
       for(int j=i+1;j<map.size_list();j++){
          if(map[i]<map[j]){
-            res=j;
+            MapBook tmp=map[i];
+            map[i]=map[j];
+            map[j]=tmp;
          }
       }
-      MapBook tmp=map[i];
-      map[i]=map[res];
-      map[res]=tmp;
+      
    }
    g.tab(57);cout << " ====================================================" << endl;
    g.tab(57);cout << " |Ten sach                                |So luong |"<<endl;

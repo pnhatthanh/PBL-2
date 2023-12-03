@@ -79,13 +79,13 @@ ostream &operator<<(ostream &o, const Date &d)
 }
 string Date::convertToString(){
     string res="";
-    if(this->day<9){
+    if(this->day<=9){
         res+="0"+to_string(this->day);
     }else{
         res+=to_string(this->day);
     }
     res+="/";
-    if(this->month<9){
+    if(this->month<=9){
         res+="0"+to_string(this->month);
     }else{
         res+=to_string(this->month);
