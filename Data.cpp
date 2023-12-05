@@ -1,4 +1,15 @@
 #include"Data.h"
+void Data::Logo(){
+    ifstream f;
+    Graphics g;
+    f.open("BookStore.txt",ios::in);
+    while(!f.eof()){
+        string str;
+        getline(f,str);
+        g.tab(64);cout<<str<<endl;
+    }
+    f.close();
+}
 void Data::readFileCustomer(){
     ifstream f;
     f.open("Customer.txt",ios::in);
@@ -175,7 +186,12 @@ void Data::writeFileCustomer(List<Customer>& customer)
     f.open("Customer.txt", ios::trunc);
     for (int i = 0; i < customer.size_list(); i++)
     {
-       
+        if(i==customer.size_list()-1){
+            f << customer[i].getIDCustomer() << "," << customer[i].getFullName() << ",";
+            f << customer[i].getAddress() << "," << customer[i].getPhoneNumber() << ",";
+            f << customer[i].getEmail();
+            break;
+        }
         f << customer[i].getIDCustomer() << "," << customer[i].getFullName() << ",";
         f << customer[i].getAddress() << "," << customer[i].getPhoneNumber() << ",";
         f << customer[i].getEmail() << endl;
@@ -188,6 +204,14 @@ void Data::writeFileBook(List<Book>& book)
     f.open("Book.txt", ios::trunc);
     for (int i = 0; i < book.size_list(); i++)
     {
+        if (i==book.size_list()-1)
+        {
+            f << book[i].getIDBook() << "," << book[i].getNameBook() << ",";
+            f << book[i].getIDCategory() << "," << book[i].getNameAuthor() << ",";
+            f << book[i].getPublishYear() << "," << book[i].getQuantity() << "," << book[i].getPrice()<<"," <<book[i].getFlag();
+            break;
+        }
+        
         f << book[i].getIDBook() << "," << book[i].getNameBook() << ",";
         f << book[i].getIDCategory() << "," << book[i].getNameAuthor() << ",";
         f << book[i].getPublishYear() << "," << book[i].getQuantity() << "," << book[i].getPrice()<<"," <<book[i].getFlag()<< endl;
@@ -200,6 +224,10 @@ void Data::writeFileCategory(List<Category>& category)
     f.open("Category.txt", ios::trunc);
     for (int i = 0; i < category.size_list(); i++)
     {
+        if(i==category.size_list()-1){
+            f << category[i].getIDCategory() << "," << category[i].getNameCategory();
+            break;
+        }
         f << category[i].getIDCategory() << "," << category[i].getNameCategory() << endl;
     }
     f.close();
@@ -211,6 +239,10 @@ void Data::writeFileDetailOrder(List<DetailOrder>& detail)
     f.open("DetailOrder.txt", ios::trunc);
     for (int i = 0; i < detail.size_list(); i++)
     {
+        if(i==detail.size_list()-1){
+            f << detail[i].getIDOrder() << "," << detail[i].getNameBook() << "," << detail[i].getQuantityBook();
+            break;
+        }
         f << detail[i].getIDOrder() << "," << detail[i].getNameBook() << "," << detail[i].getQuantityBook() << endl;
     }
     f.close();
@@ -222,6 +254,12 @@ void Data::writeFileDiscount(List<Discount>& discount)
     f.open("Discount.txt", ios::trunc);
     for (int i = 0; i < discount.size_list(); i++)
     {
+        if(i==discount.size_list()-1){
+            f << discount[i].getIDDiscount() << "," << discount[i].getDiscount() << ",";
+            f << discount[i].getLevel() << "," << discount[i].getQuantity() << ",";
+            f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus() << ","<<discount[i].getFlag();
+            break;
+        }
         f << discount[i].getIDDiscount() << "," << discount[i].getDiscount() << ",";
         f << discount[i].getLevel() << "," << discount[i].getQuantity() << ",";
         f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus() << ","<<discount[i].getFlag()<<endl;
@@ -234,6 +272,11 @@ void Data::writeFileOrder(List<Order>& order)
     f.open("Order.txt", ios::trunc);
     for (int i = 0; i < order.size_list(); i++)
     {
+        if(i==order.size_list()-1){
+            f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
+            f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << "," << order[i].getTotalPrice();
+            break;
+        }
         f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
         f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << "," << order[i].getTotalPrice() << endl;
     }

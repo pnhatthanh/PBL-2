@@ -19,6 +19,7 @@ class Data{
         List<Discount> dataDiscount;
         List<DetailOrder> dataDetailOrder;
     public:
+        void Logo();
         void readFileCategory();
         void readFileCustomer();
         void readFileBook();

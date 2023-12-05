@@ -9,6 +9,7 @@ void Menu::mainMenu(Data &data)
     do
     {
         system("cls");
+        data.Logo();
         g.tab(77); cout<< "QUAN LI CUA HANG BAN SACH" << endl;
         g.downLine(1);
         g.tab(57);cout << "=============================================================" << endl;
@@ -264,14 +265,14 @@ void Menu::discountMenu(Data &data)
             system("cls");
             discount.addDisscount(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 2:
             system("cls");
             discount.deleteDiscount(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 3:
@@ -279,14 +280,14 @@ void Menu::discountMenu(Data &data)
             discount.showDiscount(data);
             g.downLine(1);
             cin.ignore();
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 4:
             system("cls");
             discount.editDiscount(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         }
