@@ -9,18 +9,18 @@ void Menu::mainMenu(Data &data)
     do
     {
         system("cls");
-        g.tab(65); cout<< "QUAN LI CUA HANG BAN SACH" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Quan li khach hang         |" << endl;
-        g.tab(60);cout << "|    2. Quan li sach               |" << endl;
-        g.tab(60);cout << "|    3. Quan li hoa don            |" << endl;
-        g.tab(60);cout << "|    4. Quan li giam gia           |" << endl;
-        g.tab(60);cout << "|    5. Thong ke                   |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de ket thuc       |" << endl;
-        g.tab(60);cout << "------------------------------------" << endl;
+        g.tab(77); cout<< "QUAN LI CUA HANG BAN SACH" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|                  1. Quan li khach hang                    |" << endl;
+        g.tab(57);cout << "|                  2. Quan li sach                          |" << endl;
+        g.tab(57);cout << "|                  3. Quan li hoa don                       |" << endl;
+        g.tab(57);cout << "|                  4. Quan li giam gia                      |" << endl;
+        g.tab(57);cout << "|                  5. Thong ke                              |" << endl;
+        g.tab(57);cout << "|                  0. Nhap '0' de ket thuc                  |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin >> choice;
         switch (choice)
         {
@@ -49,16 +49,16 @@ void Menu::customerMenu(Data &data)
     do
     {
         system("cls");
-        g.tab(72);cout<< "QUAN LI KHACH HANG" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "-----------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Tim kiem khach hang                   |" << endl;
-        g.tab(60);cout << "|    2. Xoa khach hang                        |" << endl;
-        g.tab(60);cout << "|    3. Hien thi danh sach khach hang         |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de quay tro lai              |" << endl;
-        g.tab(60);cout << "-----------------------------------------------" << endl;
+        g.tab(80);cout<< "QUAN LI KHACH HANG" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|                1. Tim kiem khach hang                     |" << endl;
+        g.tab(57);cout << "|                2. Xoa khach hang                          |" << endl;
+        g.tab(57);cout << "|                3. Hien thi danh sach khach hang           |" << endl;
+        g.tab(57);cout << "|                0. Nhap '0' de quay tro lai                |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin >> choice1;
         switch (choice1)
         {
@@ -66,14 +66,14 @@ void Menu::customerMenu(Data &data)
                 system("cls");
                 customer.searchCustomer(data);
                 g.downLine(1);
-                g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+                g.tab(70); cout<<"Nhan 'Enter' de quay tro lai!!!";
                 cin.ignore();
                 break;
             case 2:
                 system("cls");
                 customer.deleteCustomer(data);
                 g.downLine(1);
-                g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+                g.tab(71); cout<<"Nhan 'Enter' de quay tro lai!!!";
                 cin.ignore();
                 break;
             case 3:
@@ -81,7 +81,7 @@ void Menu::customerMenu(Data &data)
                 system("cls");
                 customer.showCustomer(data);
                 g.downLine(1);
-                g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+                g.tab(75); cout<<"Nhan 'Enter' de quay tro lai!!!";
                 cin.ignore();
                 break;
         }
@@ -93,19 +93,19 @@ void Menu::bookMenu(Data &data)
     int choice;
     do{
         system("cls");
-        g.tab(72);cout<< "QUAN LI SACH" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "---------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Them sach                           |" << endl;
-        g.tab(60);cout << "|    2. Xoa sach                            |" << endl; //???
-        g.tab(60);cout << "|    3. Cap nhat gia sach                   |" << endl;
-        g.tab(60);cout << "|    4. Hien thi danh sach sach             |" << endl;
-        g.tab(60);cout << "|    5. Hien thi danh sach theo the loai    |" << endl;
-        g.tab(60);cout << "|    6. Hien thi danh sach theo tac gia     |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de quay tro lai            |" << endl;
-        g.tab(60);cout << "---------------------------------------------" << endl;
+        g.tab(82);cout<< "QUAN LI SACH" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|                 1. Them sach                               |" << endl;
+        g.tab(57);cout << "|                 2. Xoa sach                                |" << endl;
+        g.tab(57);cout << "|                 3. Cap nhat gia sach                       |" << endl;
+        g.tab(57);cout << "|                 4. Hien thi danh sach sach                 |" << endl;
+        g.tab(57);cout << "|                 5. Hien thi danh sach theo the loai        |" << endl;
+        g.tab(57);cout << "|                 6. Hien thi danh sach theo tac gia         |" << endl;
+        g.tab(57);cout << "|                 0. Nhap '0' de quay tro lai                |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin>>choice;
         switch (choice)
         {
@@ -114,21 +114,21 @@ void Menu::bookMenu(Data &data)
             book.addbook(data);
             cin.ignore(1);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 2:
             system("cls");
             book.deleteBook(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 3:
             system("cls");
             book.editPriceBook(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore();
             break;
         case 4:
@@ -136,21 +136,21 @@ void Menu::bookMenu(Data &data)
             book.showBook(data);
             cin.ignore();
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 5:
             system("cls");
             book.showBookByCategory(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 6:
             system("cls");
             book.searchByAuthor(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         }
@@ -164,15 +164,15 @@ void Menu::orderMenu(Data &data)
     do
     {
         system("cls");
-        g.tab(72);cout<< "QUAN LI HOA DON" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "-------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Tao don hang moi                  |" << endl;
-        g.tab(60);cout << "|    2. Danh sach hoa don cua khach hang  |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de quay tro lai          |" << endl;
-        g.tab(60);cout << "-------------------------------------------" << endl;
+        g.tab(79);cout<< "QUAN LI HOA DON" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|               1. Tao don hang moi                         |" << endl;
+        g.tab(57);cout << "|               2. Danh sach hoa don cua khach hang         |" << endl;
+        g.tab(57);cout << "|               0. Nhap '0' de quay tro lai                 |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin >> choice;
         switch (choice)
         {
@@ -200,16 +200,16 @@ void Menu::statisticsMenu(Data &data)
     do
     {
         system("cls");
-        g.tab(77);cout<< "THONG KE" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "------------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Thong ke so luong ton kho              |" << endl;
-        g.tab(60);cout << "|    2. Thong ke sach ban chay nhat            |" << endl;
-        g.tab(60);cout << "|    3. Thong ke doanh thu cua cua hang        |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de quay tro lai               |" << endl;
-        g.tab(60);cout << "------------------------------------------------" << endl;
+        g.tab(83);cout<< "THONG KE" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|               1. Thong ke so luong ton kho                |" << endl;
+        g.tab(57);cout << "|               2. Thong ke sach ban chay nhat              |" << endl;
+        g.tab(57);cout << "|               3. Thong ke doanh thu cua cua hang          |" << endl;
+        g.tab(57);cout << "|               0. Nhap '0' de quay tro lai                 |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin >> choice;
         switch (choice)
         {
@@ -218,7 +218,7 @@ void Menu::statisticsMenu(Data &data)
             statistics.inventoryNumber(data);
             g.downLine(1);
             cin.ignore();
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 2:
@@ -226,14 +226,14 @@ void Menu::statisticsMenu(Data &data)
             statistics.listBestSeller(data);
             g.downLine(1);
             cin.ignore();
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         case 3:
             system("cls");
             statistics.sales(data);
             g.downLine(1);
-            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            g.tab(72); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);
             break;
         }
@@ -246,17 +246,17 @@ void Menu::discountMenu(Data &data)
     do
     {
         system("cls");
-        g.tab(75);cout<<"QUAN LI MA GIAM GIA" << endl;
-        g.downLine(2);
-        g.tab(60);cout << "----------------------------------------------------" << endl;
-        g.tab(60);cout << "|    1. Them moi ma giam gia                       |" << endl;
-        g.tab(60);cout << "|    2. Xoa ma giam gia                            |" << endl;
-        g.tab(60);cout << "|    3. Hien thi thong tin tat ca ma giam gia      |" << endl;
-        g.tab(60);cout << "|    4. Chinh sua ma giam gia                      |" << endl;
-        g.tab(60);cout << "|    0. Nhap '0' de quay tro lai                   |" << endl;
-        g.tab(60);cout << "----------------------------------------------------" << endl;
+        g.tab(77);cout<<"QUAN LI MA GIAM GIA" << endl;
         g.downLine(1);
-        g.tab(60);cout << "--->Nhap lua chon: ";
+        g.tab(57);cout << "=============================================================" << endl;
+        g.tab(57);cout << "|           1. Them moi ma giam gia                         |" << endl;
+        g.tab(57);cout << "|           2. Xoa ma giam gia                              |" << endl;
+        g.tab(57);cout << "|           3. Hien thi thong tin tat ca ma giam gia        |" << endl;
+        g.tab(57);cout << "|           4. Chinh sua ma giam gia                        |" << endl;
+        g.tab(57);cout << "|           0. Nhap '0' de quay tro lai                     |" << endl;
+        g.tab(57);cout << "=============================================================" << endl;
+        g.downLine(1);
+        g.tab(76);cout << "--->Nhap lua chon: ";
         cin>>choice;
         switch (choice)
         {

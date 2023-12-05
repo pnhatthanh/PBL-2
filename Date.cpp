@@ -37,13 +37,13 @@ void Date::setDate()
     Graphics g;
     while (true)
     {
-        g.tab(60);
+        g.tab(69);
         cout<<"Nhap thoi gian(dd/mm/yyyy): ";
         string date;
         getline(cin, date);
         if (date.length() != 10 || date[2] != '/' || date[5] != '/')
         {
-            g.tab(65);cout<<"Dinh dang ngay thang nam khong chinh xac!"<<endl;
+            g.tab(74);cout<<"Dinh dang ngay thang nam khong chinh xac!"<<endl;
         }
         else
         {
@@ -55,7 +55,7 @@ void Date::setDate()
             this->year = year;
             if (!this->checkDate())
             {
-                g.tab(65);cout << "Ngay thang nam khong hop le. Vui long nhap lai!" << endl;
+                g.tab(74);cout << "Ngay thang nam khong hop le!" << endl;
             }
             else
             {
