@@ -2,7 +2,7 @@
 void Data::Logo(){
     ifstream f;
     Graphics g;
-    f.open("BookStore.txt",ios::in);
+    f.open("Data/BookStore.txt",ios::in);
     while(!f.eof()){
         string str;
         getline(f,str);
@@ -12,7 +12,7 @@ void Data::Logo(){
 }
 void Data::readFileCustomer(){
     ifstream f;
-    f.open("Customer.txt",ios::in);
+    f.open("Data/Customer.txt",ios::in);
     while(!f.eof()){
         string idCustomer;
         string fullName;
@@ -35,7 +35,7 @@ List<Customer>& Data::getDataCustomer(){
 
 void Data::readFileBook(){
     ifstream f;
-    f.open("Book.txt",ios::in);
+    f.open("Data/Book.txt",ios::in);
     while(!f.eof()){
         string idBook;
         string nameBook;
@@ -68,7 +68,7 @@ List<Book>& Data::getDataBook(){
 
 void Data::readFileCategory(){
     ifstream f;
-    f.open("Category.txt",ios::in);
+    f.open("Data/Category.txt",ios::in);
     while(!f.eof()){
         string idCategory;
         string nameCategory;
@@ -84,7 +84,7 @@ List<Category>& Data::getDataCategory(){
 
 void Data::readFileOrder(){
     ifstream f;
-    f.open("Order.txt",ios::in);
+    f.open("Data/Order.txt",ios::in);
     while(!f.eof()){
         string idOrder;
         string idCustomer;
@@ -112,7 +112,7 @@ List<Order>& Data::getDataOrder(){
 
 void Data::readFileDiscount(){
     ifstream f;
-    f.open("Discount.txt",ios::in);
+    f.open("Data/Discount.txt",ios::in);
     while(!f.eof()){
         string idDiscount;
         double discount;
@@ -142,6 +142,13 @@ void Data::readFileDiscount(){
         int month2=(lastDate[3]-'0')*10+(lastDate[4]-'0');
         int year2=(lastDate[6]-'0')*1000+(lastDate[7]-'0')*100+(lastDate[8]-'0')*10+(lastDate[9]-'0');
         Date dd2(day2,month2,year2);
+        Date local;
+        local.localDate();
+        if(quantity>0&&local>=dd1&&local<=dd2){
+            status="Con";
+        }else{
+            status="Het";
+        }
         Discount dis(idDiscount,discount,level,quantity,dd1,dd2,status,flag);
         this->dataDiscount.addLast(dis);
     }
@@ -152,7 +159,7 @@ List<Discount>& Data::getDataDiscount(){
 
 void Data::readFileDetailOrder(){
     ifstream f;
-    f.open("DetailOrder.txt",ios::in);
+    f.open("Data/DetailOrder.txt",ios::in);
     while(!f.eof()){
         string idOrder;
         string nameBook;
@@ -183,7 +190,7 @@ void Data::updateDiscount(int index, Discount dis){
 void Data::writeFileCustomer(List<Customer>& customer)
 {
     ofstream f;
-    f.open("Customer.txt", ios::trunc);
+    f.open("Data/Customer.txt", ios::trunc);
     for (int i = 0; i < customer.size_list(); i++)
     {
         if(i==customer.size_list()-1){
@@ -201,7 +208,7 @@ void Data::writeFileCustomer(List<Customer>& customer)
 void Data::writeFileBook(List<Book>& book)
 {
     ofstream f;
-    f.open("Book.txt", ios::trunc);
+    f.open("Data/Book.txt", ios::trunc);
     for (int i = 0; i < book.size_list(); i++)
     {
         if (i==book.size_list()-1)
@@ -221,7 +228,7 @@ void Data::writeFileBook(List<Book>& book)
 void Data::writeFileCategory(List<Category>& category)
 {
     ofstream f;
-    f.open("Category.txt", ios::trunc);
+    f.open("Data/Category.txt", ios::trunc);
     for (int i = 0; i < category.size_list(); i++)
     {
         if(i==category.size_list()-1){
@@ -236,7 +243,7 @@ void Data::writeFileCategory(List<Category>& category)
 void Data::writeFileDetailOrder(List<DetailOrder>& detail)
 {
     ofstream f;
-    f.open("DetailOrder.txt", ios::trunc);
+    f.open("Data/DetailOrder.txt", ios::trunc);
     for (int i = 0; i < detail.size_list(); i++)
     {
         if(i==detail.size_list()-1){
@@ -251,7 +258,7 @@ void Data::writeFileDetailOrder(List<DetailOrder>& detail)
 void Data::writeFileDiscount(List<Discount>& discount)
 {
     ofstream f;
-    f.open("Discount.txt", ios::trunc);
+    f.open("Data/Discount.txt", ios::trunc);
     for (int i = 0; i < discount.size_list(); i++)
     {
         if(i==discount.size_list()-1){
@@ -269,7 +276,7 @@ void Data::writeFileDiscount(List<Discount>& discount)
 void Data::writeFileOrder(List<Order>& order)
 {
     ofstream f;
-    f.open("Order.txt", ios::trunc);
+    f.open("Data/Order.txt", ios::trunc);
     for (int i = 0; i < order.size_list(); i++)
     {
         if(i==order.size_list()-1){

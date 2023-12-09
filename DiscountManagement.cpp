@@ -201,58 +201,65 @@ void DiscountManagement::editDiscount(Data &data){
     string status;
     g.tab(77);
     cout<<"CHINH SUA MA GIAM GIA"<<endl;
-    g.tab(66);cout<<"Note: Nhan 'y' de chinh sua- Nhan 'n' de bo qua"<<endl;
+    g.tab(66);cout<<"Note: Nhan 'y' de chinh sua- Nhan 'Enter' de bo qua"<<endl;
     g.downLine(1);
     g.tab(68);
-    char c;
-    cout << "Muc giam gia(VND)        ";cin>>c;
-    if(c=='y'){
+    string c;
+    cout << "Muc giam gia(VND)        ";getline(cin,c);
+    if(c=="y"){
         g.tab(75);
         cout<<"Nhap muc giam gia:      ";
         cin>>discount;
+        cin.ignore(1);
     }else{
         discount=ld[index].getDiscount();
     }
     g.tab(68);
-    cout << "So tien toi thieu(VND):  ";cin>>c;
-    if(c=='y'){
+    cout << "So tien toi thieu(VND):  ";getline(cin,c);
+    if(c=="y"){
         g.tab(75);
         cout<<"Nhap so tien toi thieu: ";
         cin>>level;
+        cin.ignore(1);
     }else{
         level=ld[index].getLevel();
     }
     g.tab(68);
-    cout << "So luong ma giam gia:    ";cin>>c;
-    if(c=='y'){
+    cout << "So luong ma giam gia:    ";getline(cin,c);
+    if(c=="y"){
         g.tab(75);
         cout<<"Nhap so luong ma giam gia: ";
         cin>>quantity;
+        cin.ignore(1);
     }else{
         quantity=ld[index].getQuantity();
     }
     g.tab(68);
-    cout << "Ngay bat dau:            ";cin>>c;
-    if(c=='y'){
+    cout << "Ngay bat dau:            ";getline(cin,c);
+    if(c=="y"){
         cin.ignore();
         g.tab(12);firstDate.setDate();
+        cin.ignore(1);
     }else{
         firstDate=ld[index].getFirstDate();
     }
     g.tab(68);
-    cout << "Ngay ket thuc:           ";cin>>c;
-    if(c=='y'){
+    cout << "Ngay ket thuc:           ";getline(cin,c);
+    if(c=="c"){
         cin.ignore();
         g.tab(12);lastDate.setDate();
+        cin.ignore(1);
     }else{
-        cin.ignore();
         lastDate=ld[index].getLastDate();
     }
-    if(quantity>0){
+    Date local;
+    local.localDate();
+    if(quantity>0&&local>=firstDate&&local<=lastDate){
         status="Con";
     }else{
         status="Het";
     }
+    g.tab(68);cout<<"Trang thai ma giam gia:  "<<status<<endl;
     int flag=1;
     Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.updateDiscount(index,dis);

@@ -72,7 +72,8 @@ void OrderManagement::creatOrder(Data &data)
             g.tab(74);cout << "Sach khong ton tai!!!" << endl;
             continue;
         }
-        g.tab(69);cout << "So luong       ";
+        g.tab(64);cout<<"Gia ban: "<<lb[index].getPrice()<<" VND; Co san: "<<lb[index].getQuantity()<<" cuon."<<endl;
+        g.tab(69);cout << "So luong:      ";
         int quantity;
         cin >> quantity;
         if (quantity > lb[index].getQuantity())
@@ -141,6 +142,7 @@ void OrderManagement::creatOrder(Data &data)
                     {
                         double dis = ld[index].getDiscount();
                         totalPrice = totalPrice - dis;
+                        g.tab(69);cout<<"Muc giam gia:  "<<dis<<" VND"<<endl;
                         Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
                         g.tab(69);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
                         data.getDataOrder().addLast(od);

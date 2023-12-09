@@ -55,7 +55,7 @@ void Statistics::sales(Data& data){
       }
    }
    g.tab(66);cout << "==============================================" << endl;
-   g.tab(76);cout<<"--->Tong doanh thu: "<<total<<" VND"<<endl;
+   g.tab(76);cout<<"--->Tong doanh thu: "<<setprecision(9)<<total<<" VND"<<endl;
 }
 void Statistics::listBestSeller(Data &data){
    g.tab(65);cout<<"---------------------------------------------" << endl;

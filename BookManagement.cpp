@@ -1,7 +1,6 @@
 #include "BookManagement.h"
 void BookManagement::addbook(Data &data)
 {
-    string idBook;
     string nameBook;
     string Category;
     string nameAuthor;
@@ -15,25 +14,19 @@ void BookManagement::addbook(Data &data)
     g.tab(79);
     cout<<"Thong tin sach moi"<<endl;
     cin.ignore();
-    //Ma sach tu sinh
-    do{
-        bool check=1;
-        g.tab(73);
-        cout << "Ma sach:        ";
-        getline(cin,idBook);
-        for(int i=0;i<data.getDataBook().size_list();i++){
-            if(idBook==data.getDataBook()[i].getIDBook()){
-                check=0;
-            }
-        }
-        if(check==0){
-            g.tab(77);
-            cout<<"Ma sach da ton tai!"<<endl;
-        }
-        if(check==1){
-            break;
-        }
-    }while(true);
+    int index=data.getDataBook().size_list()-1;
+    string idBook=data.getDataBook()[index].getIDBook();
+    index=(idBook[1]-'0')*100+(idBook[2]-'0')*10+(idBook[3]-'0')+1;
+    idBook="S";
+    if(index<10){
+    	idBook+="00"+to_string(index);
+	}else if(index>=10&&index<=99){
+		idBook+="0"+to_string(index);
+	}else{
+		idBook+=to_string(index);
+	}
+    g.tab(73);
+    cout << "Ma sach:        "<<idBook<<endl;
     g.tab(73);
     cout << "Ten sach:       ";
     getline(cin, nameBook);
@@ -126,7 +119,7 @@ void BookManagement::deleteBook(Data &data)
         cout << "Tac gia:        " << data.getDataBook()[index].getNameAuthor() <<endl;
         g.tab(72);
         cout << "Nam xuat ban:   " << data.getDataBook()[index].getPublishYear() <<endl;
-        g.tab(65);cout<<"Ban co chac chan muon xoa ma giam gia nay khong (y/n)? "<<endl;
+        g.tab(65);cout<<"Ban co chac chan muon xoa sach nay khong (y/n)? "<<endl;
         g.tab(84);cout<<"1. Yes"<<endl;
         g.tab(84);cout<<"2. No"<<endl;
         int n;
@@ -209,7 +202,7 @@ void BookManagement::editPriceBook(Data &data)
     cout << "NAM XUAT BAN:   " << data.getDataBook()[index].getPublishYear() <<endl;
     g.tab(73);
     cout << "GIA SACH CU:    " << data.getDataBook()[index].getPrice() << " VND" << endl;
-    g.tab(70);
+    g.tab(73);
     cout << "Nhap gia sach moi(VND):   ";
     cin >> new_Price;
     data.getDataBook()[index].setPrice(new_Price);
@@ -224,45 +217,41 @@ void BookManagement::showBookByCategory(Data &data)
     g.tab(65);cout<<"|        DANH SACH SACH THEO THE LOAI       |" << endl;
     g.tab(65);cout<<"---------------------------------------------" << endl;
     g.downLine(1);
-    g.tab(63);
-    cout << "Nhap the loai sach: ";
-    cin.ignore(1);
-    string nameCategory;
-    getline(cin, nameCategory);
-    g.downLine(2);
-    List<Category> &category = data.getDataCategory();
     string idCategory;
-    bool check = false;
-    for (int i = 0; i < category.size_list(); i++)
-    {
-        if (category[i].getNameCategory() == nameCategory)
-        {
-            check = true;
-            idCategory = category[i].getIDCategory();
+    g.tab(72);
+    cout << "The loai sach:  "<<endl;
+    int i=0;
+    for(i;i<data.getDataCategory().size_list();i++){
+       g.tab(86); cout<<i<<". "<<data.getDataCategory()[i].getNameCategory()<<endl;
+    }
+    do{
+        g.tab(77);cout<<"Nhap lua chon: ";
+        cin>>i;
+        if(i>=0&&i<data.getDataCategory().size_list()){
+            idCategory=data.getDataCategory()[i].getIDCategory();
+            break;
         }
-    }
-    if (check != true)
-    {
-        g.tab(68);
-        cout << "The loai: " << nameCategory << " khong ton tai!!" << endl;
-        return;
-    }
+    }while(true);
+    cin.ignore(1);
+    g.downLine(1);
     List<Book> &book = data.getDataBook();
-    g.tab(43);
+    g.tab(74);cout<<"THE LOAI: '"<<data.getDataCategory()[i].getNameCategory()<<"'"<<endl;
+    g.tab(45);
     cout << "=======================================================================================" << endl;
-    g.tab(43);
+    g.tab(45);
     cout << "|ID sach     |Ten sach                                |Ma the loai    |Tac gia        |" << endl;
+    g.tab(45);
+    cout << "---------------------------------------------------------------------------------------" <<endl;
     for (int i = 0; i < book.size_list(); i++)
     {
         if (book[i].getIDCategory() == idCategory&&book[i].getFlag()==1)
         {
-            check = true;
-            g.tab(43);
+            g.tab(45);
             cout << "|" << left << setw(12) << book[i].getIDBook() << "|" << left << setw(40) << book[i].getNameBook();
             cout << "|" << left << setw(15) << book[i].getIDCategory() << "|" << left << setw(15) << book[i].getNameAuthor() << "|" << endl;
         }
     }
-    g.tab(43);
+    g.tab(45);
     cout << "=======================================================================================" << endl;
 }
 void BookManagement::searchByAuthor(Data &data)
@@ -281,7 +270,7 @@ void BookManagement::searchByAuthor(Data &data)
     bool check = false;
     for (int i = 0; i < book.size_list(); i++)
     {
-        if (book[i].getNameAuthor() == nameAuthor)
+        if (book[i].getNameAuthor() == nameAuthor&&book[i].getFlag()==1)
         {
             check = true;
         }

@@ -1,0 +1,13 @@
+S001,Mat biec,TN,Nguyen Nhat Anh,1980,95,85000,1
+S002,Lap trinh C can ban,GT,Pham Van At,2023,90,158000,1
+S003,Toi thay hoa vang tren co xanh,TN,Nguyen Nhat Anh,2010,150,88000,1
+S004,Ban chi tuong la minh dang rat co gang,KH-XH,Ly Thuong Long,2021,50,107000,1
+S005,Python co ban,GT,Bui Viet Ha,2023,80,113000,1
+S006,Cho toi xin mot ve di tuoi tho,TN,Nguyen Nhat Anh,2008,119,82000,1
+S007,Ban khong thong minh lam dau,KH-XH,David McRaney,2011,100,112000,1
+S008,Tu duy phan bien,KH-XH,Zoe MCkey,2019,28,60000,1
+S009,Ba dieu uoc,TT,NXB Tre,2018,28,22000,1
+S010,Trang quynh,TT,NXB Kim Dong,2003,40,15000,1
+S011,Ban thiet ke vi dai,KH-KT,William Hawking,2010,30,90000,1
+S012,10 van cau hoi vi sao,KH-KT,Duc Anh,2005,40,65000,1
+S013,Tu tuong Ho Chi Minh,GT,NXB Chinh tri,2005,20,56000,1

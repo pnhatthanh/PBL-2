@@ -114,6 +114,8 @@ void CustomerManagement::showCustomer(Data &data)
     cout << "================================================================================================" << endl;
     g.tab(45);
     cout << "|ID khach hang  |Ten khach hang          |Dia chi      |So dien thoai  |Email                  |" << endl;
+    g.tab(45);
+    cout << "------------------------------------------------------------------------------------------------" <<endl;
     List<Customer> &lc = data.getDataCustomer();
     for (int i = 0; i < lc.size_list(); i++)
     {
