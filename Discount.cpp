@@ -19,7 +19,7 @@ double Discount::getDiscount(){
 double Discount::getLevel(){
     return this->level;
 }
-int Discount::getQuantity(){
+int& Discount::getQuantity(){
     return this->quantity;
 }
 Date Discount::getFirstDate(){

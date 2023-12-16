@@ -72,12 +72,15 @@ void DiscountManagement::addDisscount(Data& data){
         cout<<"Moc thoi gian khong hop le!"<<endl;
       }
    }while(true);
-    string status;
-    if(quantity>0){
+   string status;
+    Date local;
+    local.localDate();
+    if(quantity>0&&local>=firstDate&&local<=lastDate){
         status="Con";
     }else{
         status="Het";
     }
+    g.tab(66);cout<<"Trang thai ma giam gia:  "<<status<<endl;
     int flag=1;
     Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
     data.getDataDiscount().addLast(dis);

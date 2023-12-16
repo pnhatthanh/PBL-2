@@ -72,19 +72,20 @@ void OrderManagement::creatOrder(Data &data)
             g.tab(74);cout << "Sach khong ton tai!!!" << endl;
             continue;
         }
-        g.tab(64);cout<<"Gia ban: "<<lb[index].getPrice()<<" VND; Co san: "<<lb[index].getQuantity()<<" cuon."<<endl;
+        g.tab(71);cout<<"Gia ban: "<<lb[index].getPrice()<<" VND; Co san: "<<lb[index].getQuantity()<<" cuon."<<endl;
         g.tab(69);cout << "So luong:      ";
         int quantity;
         cin >> quantity;
         if (quantity > lb[index].getQuantity())
         {
-            g.tab(74);cout << "So luong ton kho khong du!!!";
+            g.tab(74);cout << "So luong ton kho khong du!!!"<<endl;
+            cin.ignore();
             continue;
         }
         string idBook = lb[index].getIDBook();
         data.decreaseQuantityOfBook(idBook, quantity);
         data.writeFileBook(data.getDataBook()); 
-        DetailOrder detailOrder(idOrder, nameBook, quantity);
+        DetailOrder detailOrder(idOrder,idBook,lb[index].getPrice(),quantity);
         data.getDataDetailOrder().addLast(detailOrder);
         data.writeFileDetailOrder(data.getDataDetailOrder());
         g.tab(73);cout << "--> Them sach thanh cong! <--" << endl;
@@ -138,11 +139,13 @@ void OrderManagement::creatOrder(Data &data)
                 if (d >= firstDate && d <= lastDate)
                 {
                     double minimum = ld[index].getLevel();
-                    if (totalPrice >= minimum)
+                    if (totalPrice >= minimum&&ld[index].getQuantity()>0)
                     {
                         double dis = ld[index].getDiscount();
                         totalPrice = totalPrice - dis;
                         g.tab(69);cout<<"Muc giam gia:  "<<dis<<" VND"<<endl;
+                        ld[index].getQuantity()=ld[index].getQuantity()-1;
+                        data.writeFileDiscount(data.getDataDiscount());
                         Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
                         g.tab(69);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
                         data.getDataOrder().addLast(od);
@@ -240,12 +243,12 @@ void OrderManagement::showOrder(Data &data)
     List<Book>& book=data.getDataBook();
     for(int i=0;i<detail.size_list();i++){
         if(order[index].getIDOrder()==detail[i].getIDOrder()){
-            g.tab(53);cout<<"|"<<left<<setw(35)<<detail[i].getNameBook();
             for(int j=0;j<book.size_list();j++){
-                if(detail[i].getNameBook()==book[j].getNameBook()){
-                    cout<<"|"<<left<<setw(15)<<book[j].getPrice();
+                if(detail[i].getIDBook()==book[j].getIDBook()){
+                    g.tab(53);cout<<"|"<<left<<setw(35)<<book[j].getNameBook();
                 }
             }
+            cout<<"|"<<left<<setw(15)<<detail[i].getSalePrice();
             cout<<"|"<<setw(11)<<detail[i].getQuantityBook()<<"|"<<endl;
         }
     }

@@ -1,8 +1,9 @@
 #include"DetailOrder.h"
 DetailOrder::DetailOrder(){}
-DetailOrder::DetailOrder(string b, string c, int d){
+DetailOrder::DetailOrder(string b, string c,double salePrice,int d){
     this->idOrder=b;
-    this->nameBook=c;
+    this->idBook=c;
+    this->salePrice=salePrice;
     this->quantityBook=d;
 }
 string DetailOrder::getIDOrder(){
@@ -11,6 +12,9 @@ string DetailOrder::getIDOrder(){
 int& DetailOrder::getQuantityBook(){
     return this->quantityBook;
 }
-string DetailOrder::getNameBook(){
-    return this->nameBook;
+double DetailOrder::getSalePrice(){
+    return this->salePrice;
+}
+string DetailOrder::getIDBook(){
+    return this->idBook;
 }

@@ -1,18 +1,18 @@
-DH001,Mat biec,1
-DH001,Python co ban,1
-DH001,10 van cau hoi vi sao,1
-DH002,Ba dieu uoc,1
-DH002,Lap trinh C can ban,1
-DH003,Python co ban,2
-DH004,Mat biec,2
-DH004,Lap trinh C can ban,1
-DH005,Trang quynh,5
-DH005,Toi thay hoa vang tren co xanh,2
-DH005,Python co ban,1
-DH005,10 van cau hoi vi sao,2
-DH006,Ba dieu uoc,3
-DH006,Ban khong thong minh lam dau,1
-DH006,Tu duy phan bien,1
-DH007,Tu duy phan bien,2
-DH007,Cho toi xin mot ve di tuoi tho,1
-DH007,Ba dieu uoc,2
+DH001,S001,85000,1
+DH001,S005,113000,1
+DH001,S012,65000,1
+DH002,S009,22000,1
+DH002,S002,158000,1
+DH003,S005,113000,2
+DH004,S001,85000,2
+DH004,S002,158000,1
+DH005,S010,15000,5
+DH005,S003,88000,2
+DH005,S005,113000,1
+DH005,S012,65000,2
+DH006,S009,22000,3
+DH006,S007,112000,1
+DH006,S008,60000,1
+DH007,S008,60000,2
+DH007,S006,82000,1
+DH007,S009,22000,2

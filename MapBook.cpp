@@ -1,17 +1,20 @@
 #include"MapBook.h"
 MapBook::MapBook(){}
-MapBook::MapBook(string name, int c){
-    this->nameBook=name;
+MapBook::MapBook(string id, int c){
+    this->idBook=id;
     this->count=c;
 }
 // void MapBook::increase(int a){
 //     this->count=this->count
 // }
-int& MapBook::getCount(){
+void MapBook::setCount(int count){
+    this->count=count;
+}
+int MapBook::getCount(){
     return this->count; 
 }
-string& MapBook::getBook(){
-    return this->nameBook;
+string MapBook::getIDBook(){
+    return this->idBook;
 }
 bool MapBook::operator<(const MapBook& tmp){
     if(this->count<tmp.count){
@@ -20,6 +23,6 @@ bool MapBook::operator<(const MapBook& tmp){
     return false;
 }
 ostream& operator<<(ostream &o, const MapBook& m){
-    o<<m.nameBook<<" "<<m.count<<endl;
+    o<<m.idBook<<" "<<m.count<<endl;
     return o;
 }

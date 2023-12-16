@@ -162,13 +162,16 @@ void Data::readFileDetailOrder(){
     f.open("Data/DetailOrder.txt",ios::in);
     while(!f.eof()){
         string idOrder;
-        string nameBook;
+        string idBook;
+        double salePrice;
         int quantityBook;
         getline(f,idOrder,',');
-        getline(f,nameBook,',');
+        getline(f,idBook,',');
+        f>>salePrice;
+        f.ignore(1);
         f>>quantityBook;
         f.ignore(1);
-        DetailOrder detail(idOrder,nameBook,quantityBook);
+        DetailOrder detail(idOrder,idBook,salePrice,quantityBook);
         this->dataDetailOrder.addLast(detail);
     }
     f.close();
@@ -247,10 +250,10 @@ void Data::writeFileDetailOrder(List<DetailOrder>& detail)
     for (int i = 0; i < detail.size_list(); i++)
     {
         if(i==detail.size_list()-1){
-            f << detail[i].getIDOrder() << "," << detail[i].getNameBook() << "," << detail[i].getQuantityBook();
+            f << detail[i].getIDOrder() << "," << detail[i].getIDBook()<<","<<detail[i].getSalePrice() << "," << detail[i].getQuantityBook();
             break;
         }
-        f << detail[i].getIDOrder() << "," << detail[i].getNameBook() << "," << detail[i].getQuantityBook() << endl;
+        f << detail[i].getIDOrder() << "," << detail[i].getIDBook()<<","<<detail[i].getSalePrice()  << "," << detail[i].getQuantityBook() << endl;
     }
     f.close();
 }

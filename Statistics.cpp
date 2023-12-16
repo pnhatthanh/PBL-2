@@ -67,16 +67,16 @@ void Statistics::listBestSeller(Data &data){
    for(int i=0;i<detail.size_list();i++){
       bool check=false;
       for(int j=0;j<map.size_list();j++){
-         string nameb=detail[i].getNameBook();
-         if(nameb==map[j].getBook()){
+         string idBook=detail[i].getIDBook();
+         if(idBook==map[j].getIDBook()){
             check=true;
-            map[j].getCount()=map[j].getCount()+detail[i].getQuantityBook();
+            map[j].setCount(map[j].getCount()+detail[i].getQuantityBook());
          }
       }
       if(check==false){
-         string nameBook=detail[i].getNameBook();
+         string idBook=detail[i].getIDBook();
          int count=detail[i].getQuantityBook();
-         MapBook mb(nameBook,count);
+         MapBook mb(idBook,count);
          map.addLast(mb);
       }
    }
@@ -93,8 +93,15 @@ void Statistics::listBestSeller(Data &data){
    g.tab(60);cout << " ====================================================" << endl;
    g.tab(60);cout << " |Ten sach                                |So luong |"<<endl;
    g.tab(60);cout << " ----------------------------------------------------" << endl;
+   List<Book> book=data.getDataBook();
    for(int i=0;i<map.size_list();i++){
-      g.tab(60);cout<< " |" << left << setw(40) <<map[i].getBook()<<"|" << left << setw(9) <<map[i].getCount() <<"|"<<endl;
+      for(int j=0;j<book.size_list();j++){
+         if(map[i].getIDBook()==book[j].getIDBook()){
+            g.tab(60);cout<< " |" << left << setw(40) <<book[j].getNameBook()<<"|" << left << setw(9) <<map[i].getCount() <<"|"<<endl;
+            break;
+         }
+      }
+           
    }
    g.tab(60);cout << " ====================================================" << endl;
 }

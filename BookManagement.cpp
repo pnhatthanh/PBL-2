@@ -260,7 +260,7 @@ void BookManagement::searchByAuthor(Data &data)
     g.tab(65);cout<<"|         DANH SACH SACH THEO TAC GIA       |" << endl;
     g.tab(65);cout<<"---------------------------------------------" << endl;
     g.downLine(1);
-    g.tab(63);
+    g.tab(68);
     cout << "Nhap ten tac gia: ";
     cin.ignore(1);
     string nameAuthor;

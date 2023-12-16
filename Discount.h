@@ -18,7 +18,7 @@ class Discount{
         string getIDDiscount();
         double getDiscount();
         double getLevel();
-        int getQuantity();
+        int& getQuantity();
         Date getFirstDate();
         Date getLastDate();
         string getStatus();
