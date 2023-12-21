@@ -81,8 +81,7 @@ void DiscountManagement::addDisscount(Data& data){
         status="Het";
     }
     g.tab(66);cout<<"Trang thai ma giam gia:  "<<status<<endl;
-    int flag=1;
-    Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
+    Discount dis(idDiscount,discount,level,quantity,firstDate,lastDate,status);
     data.getDataDiscount().addLast(dis);
     data.writeFileDiscount(data.getDataDiscount());
     g.downLine(1);
@@ -102,7 +101,7 @@ void DiscountManagement::deleteDiscount(Data& data){
     getline(cin,nameDiscount);
     int index=-1;
     for(int i=0;i<ld.size_list();i++){
-        if(ld[i].getIDDiscount()==nameDiscount&&ld[i].getFlag()==1){
+        if(ld[i].getIDDiscount()==nameDiscount){
             index=i;
         }
     }
@@ -131,7 +130,7 @@ void DiscountManagement::deleteDiscount(Data& data){
     int n;
     g.tab(74);cout<<"Nhap lua chon: ";cin>>n;
     if(n==1){
-        data.getDataDiscount()[index].setFlag(0);
+        ld.remove(index);
         data.writeFileDiscount(data.getDataDiscount());
         g.tab(60);cout << "--------------XOA MA GIAM GIA THANH CONG!--------------" << endl;
     }
@@ -149,12 +148,10 @@ void DiscountManagement::showDiscount(Data &data){
     g.tab(30);cout << " |Ma giam gia |Muc giam gia(VND) |So tien toi thieu(VND) |So luong |Ngay bat dau |Ngay ket thuc |Tinh trang |" << endl;
     g.tab(30);cout << " ------------------------------------------------------------------------------------------------------------" << endl;
     for(int i=0;i<ld.size_list();i++){
-        if(ld[i].getFlag()==1){
-            g.tab(30);cout<<" |" << left << setw(12) << ld[i].getIDDiscount() << "|" << left << setw(18) << ld[i].getDiscount()
-            << "|"<< left << setw(23) <<ld[i].getLevel()<< "|" << left << setw(9) <<ld[i].getQuantity()
-            << "|" << left <<ld[i].getFirstDate() << "   "<<"|" << left <<ld[i].getLastDate() << "    "
-            << "|" << left << setw(11) <<ld[i].getStatus()<< "|" <<endl;
-        }
+        g.tab(30);cout<<" |" << left << setw(12) << ld[i].getIDDiscount() << "|" << left << setw(18) << ld[i].getDiscount()
+        << "|"<< left << setw(23) <<ld[i].getLevel()<< "|" << left << setw(9) <<ld[i].getQuantity()
+        << "|" << left <<ld[i].getFirstDate() << "   "<<"|" << left <<ld[i].getLastDate() << "    "
+        << "|" << left << setw(11) <<ld[i].getStatus()<< "|" <<endl;
     }
     g.tab(30);cout << " ============================================================================================================" << endl;
 }
@@ -172,7 +169,7 @@ void DiscountManagement::editDiscount(Data &data){
     getline(cin,nameDiscount);
     int index=-1;
     for(int i=0;i<ld.size_list();i++){
-        if(ld[i].getIDDiscount()==nameDiscount&&ld[i].getFlag()==1){
+        if(ld[i].getIDDiscount()==nameDiscount){
             index=i;
             break;
         }
@@ -264,7 +261,7 @@ void DiscountManagement::editDiscount(Data &data){
     }
     g.tab(68);cout<<"Trang thai ma giam gia:  "<<status<<endl;
     int flag=1;
-    Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status,flag);
+    Discount dis(nameDiscount,discount,level,quantity,firstDate,lastDate,status);
     data.updateDiscount(index,dis);
     data.writeFileDiscount(data.getDataDiscount());
     g.downLine(1);

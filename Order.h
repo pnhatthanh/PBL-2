@@ -10,10 +10,11 @@ class Order{
         string idCustomer;
         Date date;
         string idDiscount;
+        double discount;
         double totalPrice;
     public:
         Order();
-        Order(string,string,Date,string,double);
+        Order(string,string,Date,string,double,double);
         void setOrder();
         string getIDOrder();
         void setIDOrder(string);
@@ -21,6 +22,7 @@ class Order{
         void setIDCustomer(string);
         void setDate(Date);
         Date getDate();
+        double getDiscount();
         double getTotalPrice();
         string getIDDiscount();
 };

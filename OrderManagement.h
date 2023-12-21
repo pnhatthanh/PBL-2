@@ -7,4 +7,5 @@ class OrderManagement{
         void creatOrder(Data&);
         void listOrder(Data&);
         void showOrder(Data&);
+        void deleteOrder(Data&);
 };

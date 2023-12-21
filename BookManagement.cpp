@@ -286,6 +286,8 @@ void BookManagement::searchByAuthor(Data &data)
         cout << "===========================================================================================" << endl;
         g.tab(40);
         cout << "|ID sach     |Ten sach                                |Ma the loai   |Tac gia             |" << endl;
+        g.tab(40);
+        cout << "-------------------------------------------------------------------------------------------" << endl;
         for (int i = 0; i < book.size_list(); i++)
         {
             if (book[i].getNameAuthor() == nameAuthor&&book[i].getFlag()==1)

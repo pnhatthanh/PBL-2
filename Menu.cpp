@@ -170,6 +170,7 @@ void Menu::orderMenu(Data &data)
         g.tab(57);cout << "=============================================================" << endl;
         g.tab(57);cout << "|               1. Tao don hang moi                         |" << endl;
         g.tab(57);cout << "|               2. Danh sach hoa don cua khach hang         |" << endl;
+        g.tab(57);cout << "|               3. Xoa hoa don                              |" << endl;
         g.tab(57);cout << "|               0. Nhap '0' de quay tro lai                 |" << endl;
         g.tab(57);cout << "=============================================================" << endl;
         g.downLine(1);
@@ -187,6 +188,13 @@ void Menu::orderMenu(Data &data)
         case 2:
             system("cls");
             order.listOrder(data);
+            g.downLine(1);
+            g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
+            cin.ignore(1);
+            break;
+        case 3:
+            system("cls");
+            order.deleteOrder(data);
             g.downLine(1);
             g.tab(67); cout<<"Nhan 'Enter' de quay tro lai!!!";
             cin.ignore(1);

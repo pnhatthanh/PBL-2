@@ -90,18 +90,21 @@ void Data::readFileOrder(){
         string idCustomer;
         string date;
         string idDiscount;
+        double dis;
         double totalPrice;
         getline(f,idOrder,',');
         getline(f,idCustomer,',');
         getline(f,date,',');
         getline(f,idDiscount,',');
+        f>>dis;
+        f.ignore(1);
         f>>totalPrice;
         f.ignore(1);
         int day=(date[0]-'0')*10+(date[1]-'0');
         int month=(date[3]-'0')*10+(date[4]-'0');
         int year=(date[6]-'0')*1000+(date[7]-'0')*100+(date[8]-'0')*10+(date[9]-'0');
         Date dd(day,month,year);
-        Order od(idOrder,idCustomer,dd,idDiscount,totalPrice);
+        Order od(idOrder,idCustomer,dd,idDiscount,dis,totalPrice);
         this->dataOrder.addLast(od);
     }
     f.close();
@@ -121,7 +124,6 @@ void Data::readFileDiscount(){
         string firstDate;
         string lastDate;
         string status;
-        int flag;
         getline(f,idDiscount,',');
         f>>discount;
         f.ignore(1);
@@ -131,9 +133,7 @@ void Data::readFileDiscount(){
         f.ignore(1);
         getline(f,firstDate,',');
         getline(f,lastDate,',');
-        getline(f,status,',');
-        f>>flag;
-        f.ignore(1);
+        getline(f,status);
         int day1=(firstDate[0]-'0')*10+(firstDate[1]-'0');
         int month1=(firstDate[3]-'0')*10+(firstDate[4]-'0');
         int year1=(firstDate[6]-'0')*1000+(firstDate[7]-'0')*100+(firstDate[8]-'0')*10+(firstDate[9]-'0');
@@ -149,7 +149,7 @@ void Data::readFileDiscount(){
         }else{
             status="Het";
         }
-        Discount dis(idDiscount,discount,level,quantity,dd1,dd2,status,flag);
+        Discount dis(idDiscount,discount,level,quantity,dd1,dd2,status);
         this->dataDiscount.addLast(dis);
     }
 }
@@ -267,12 +267,12 @@ void Data::writeFileDiscount(List<Discount>& discount)
         if(i==discount.size_list()-1){
             f << discount[i].getIDDiscount() << "," << discount[i].getDiscount() << ",";
             f << discount[i].getLevel() << "," << discount[i].getQuantity() << ",";
-            f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus() << ","<<discount[i].getFlag();
+            f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus();
             break;
         }
         f << discount[i].getIDDiscount() << "," << discount[i].getDiscount() << ",";
         f << discount[i].getLevel() << "," << discount[i].getQuantity() << ",";
-        f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus() << ","<<discount[i].getFlag()<<endl;
+        f << discount[i].getFirstDate().convertToString() << "," << discount[i].getLastDate().convertToString() << "," << discount[i].getStatus()<<endl;
     }
     f.close();
 }
@@ -284,11 +284,11 @@ void Data::writeFileOrder(List<Order>& order)
     {
         if(i==order.size_list()-1){
             f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
-            f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << "," << order[i].getTotalPrice();
+            f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount()<< order[i].getTotalPrice();
             break;
         }
         f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
-        f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << "," << order[i].getTotalPrice() << endl;
+        f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount() << order[i].getTotalPrice() << endl;
     }
     f.close();
 }

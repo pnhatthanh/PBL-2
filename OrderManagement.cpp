@@ -109,7 +109,7 @@ void OrderManagement::creatOrder(Data &data)
         if (idDiscount=="")
         {
             idDiscount = "0";
-            Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
+            Order od(idOrder, idCustomer, d, idDiscount,0,totalPrice);
             g.tab(69);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
             data.getDataOrder().addLast(od);
             data.writeFileOrder(data.getDataOrder());
@@ -125,7 +125,7 @@ void OrderManagement::creatOrder(Data &data)
             for (int i = 0; i < ld.size_list(); i++)
             {
                 string tmp=ld[i].getIDDiscount();
-                if (idDiscount == tmp&&ld[i].getFlag()==1)
+                if (idDiscount == tmp)
                 {
                     index = i;
                 }
@@ -146,7 +146,7 @@ void OrderManagement::creatOrder(Data &data)
                         g.tab(69);cout<<"Muc giam gia:  "<<dis<<" VND"<<endl;
                         ld[index].getQuantity()=ld[index].getQuantity()-1;
                         data.writeFileDiscount(data.getDataDiscount());
-                        Order od(idOrder, idCustomer, d, idDiscount, totalPrice);
+                        Order od(idOrder, idCustomer, d, idDiscount,dis,totalPrice);
                         g.tab(69);cout<<"--->Tong tien: "<<totalPrice<<" VND"<<endl;
                         data.getDataOrder().addLast(od);
                         data.writeFileOrder(data.getDataOrder());
@@ -253,11 +253,75 @@ void OrderManagement::showOrder(Data &data)
         }
     }
     g.tab(53);cout << "=================================================================" << endl;
-    for(int i=0;i<data.getDataDiscount().size_list();i++){
-        if(data.getDataDiscount()[i].getIDDiscount()==order[index].getIDDiscount()){
-            g.tab(89);cout<<"Giam gia:  "<<data.getDataDiscount()[i].getDiscount()<<" VND"<<endl;
+    g.tab(89);cout<<"Giam gia:  "<<order[index].getDiscount()<<" VND"<<endl;
+    g.tab(89);cout << "Tong tien: " << order[index].getTotalPrice() << " VND" << endl;
+}
+void OrderManagement::deleteOrder(Data& data){
+    g.tab(65);cout<<"---------------------------------------------" << endl;
+    g.tab(65);cout<<"|               XOA DON HANG                |" << endl;
+    g.tab(65);cout<<"---------------------------------------------" << endl;
+    g.tab(74); cout << "Nhap ma hoa don: ";
+    cin.ignore();
+    string idOrder;
+    getline(cin, idOrder);
+    g.downLine(1);
+    int index=-1;
+    List<Order>& order = data.getDataOrder();
+    for (int i = 0; i < order.size_list(); i++)
+    {
+        if (idOrder == order[i].getIDOrder())
+        {
+            index = i;
             break;
         }
     }
-    g.tab(89);cout << "Tong tien: " << order[index].getTotalPrice() << " VND" << endl;
+    if (index < 0)
+    {
+        g.tab(70);cout << "Ma don hang: " <<"'"<<idOrder<<"'"<< " khong ton tai!" << endl;
+        return;
+    }
+    g.tab(77);cout << "Thong tin don hang" << endl;
+    g.tab(74);cout << "Ngay mua sach: "<< order[index].getDate()<<endl;
+    g.tab(56);cout << "=================================================================" << endl;
+    g.tab(56);cout << "|Ten sach                           |Don gia(VND)   |So luong   |" << endl;
+    g.tab(56);cout << "-----------------------------------------------------------------" << endl;
+    List<DetailOrder>& detail=data.getDataDetailOrder();
+    List<Book>& book=data.getDataBook();
+    for(int i=0;i<detail.size_list();i++){
+        if(order[index].getIDOrder()==detail[i].getIDOrder()){
+            for(int j=0;j<book.size_list();j++){
+                if(detail[i].getIDBook()==book[j].getIDBook()){
+                    g.tab(56);cout<<"|"<<left<<setw(35)<<book[j].getNameBook();
+                }
+            }
+            cout<<"|"<<left<<setw(15)<<detail[i].getSalePrice();
+            cout<<"|"<<setw(11)<<detail[i].getQuantityBook()<<"|"<<endl;
+        }
+    }
+    g.tab(56);cout << "=================================================================" << endl;
+    for(int i=0;i<data.getDataDiscount().size_list();i++){
+        if(data.getDataDiscount()[i].getIDDiscount()==order[index].getIDDiscount()){
+            g.tab(92);cout<<"Giam gia:  "<<data.getDataDiscount()[i].getDiscount()<<" VND"<<endl;
+            break;
+        }
+    }
+    g.tab(92);cout << "Tong tien: " << order[index].getTotalPrice() << " VND" << endl;
+    g.tab(65);cout<<"Ban co chac chan muon xoa don hang nay khong (y/n)? "<<endl;
+    g.tab(85);cout<<"1. Yes"<<endl;
+    g.tab(85);cout<<"2. No"<<endl;
+    int n;
+    g.tab(80);cout<<"Nhap lua chon: ";cin>>n;
+    if(n==1){
+        for(int j=0;j<detail.size_list();j++){
+            if(detail[j].getIDOrder()==idOrder){
+                detail.remove(j);
+                j--;
+            }
+        }
+        order.remove(index);
+        data.writeFileOrder(data.getDataOrder());
+        data.writeFileDetailOrder(data.getDataDetailOrder());
+        g.tab(65);cout << "--------------XOA DON HANG THANH CONG!--------------" << endl;
+        cin.ignore(1);
+    }
 }

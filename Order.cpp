@@ -1,11 +1,15 @@
 #include"Order.h"
 Order::Order(){};
-Order::Order(string id, string idCustomer,Date d,string dis,double totalPrice){
+Order::Order(string id, string idCustomer,Date d,string dis,double discount,double totalPrice){
     this->idOrder=id;
     this->idCustomer=idCustomer;
     this->date=d;
     this->idDiscount=dis;
+    this->discount=discount;
     this->totalPrice=totalPrice;
+}
+double Order::getDiscount(){
+    return this->discount;
 }
 double Order::getTotalPrice(){
     return this->totalPrice;
