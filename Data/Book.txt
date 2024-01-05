@@ -1,4 +1,4 @@
-S001,Mat biec,TN,Nguyen Nhat Anh,1980,92,85000,1
+S001,Mat biec,TN,Nguyen Nhat Anh,1980,94,85000,1
 S002,Lap trinh C can ban,GT,Pham Van At,2023,90,158000,1
 S003,Toi thay hoa vang tren co xanh,TN,Nguyen Nhat Anh,2010,150,88000,1
 S004,Ban chi tuong la minh dang rat co gang,KH-XH,Ly Thuong Long,2021,50,107000,1
