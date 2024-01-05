@@ -284,11 +284,11 @@ void Data::writeFileOrder(List<Order>& order)
     {
         if(i==order.size_list()-1){
             f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
-            f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount()<< order[i].getTotalPrice();
+            f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount()<<","<< order[i].getTotalPrice();
             break;
         }
         f << order[i].getIDOrder() << "," << order[i].getIDCustomer() << ",";
-        f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount() << order[i].getTotalPrice() << endl;
+        f << order[i].getDate().convertToString() << "," << order[i].getIDDiscount() << ","<<order[i].getDiscount()<<","<< order[i].getTotalPrice() << endl;
     }
     f.close();
 }

@@ -237,18 +237,14 @@ void DiscountManagement::editDiscount(Data &data){
     g.tab(68);
     cout << "Ngay bat dau:            ";getline(cin,c);
     if(c=="y"){
-        cin.ignore();
         g.tab(12);firstDate.setDate();
-        cin.ignore(1);
     }else{
         firstDate=ld[index].getFirstDate();
     }
     g.tab(68);
     cout << "Ngay ket thuc:           ";getline(cin,c);
-    if(c=="c"){
-        cin.ignore();
+    if(c=="y"){
         g.tab(12);lastDate.setDate();
-        cin.ignore(1);
     }else{
         lastDate=ld[index].getLastDate();
     }

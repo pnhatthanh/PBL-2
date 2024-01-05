@@ -10,5 +10,4 @@ class BookManagement
         void editPriceBook(Data&);
         void searchByAuthor(Data&);
         void showBookByCategory(Data&);
-
 };
