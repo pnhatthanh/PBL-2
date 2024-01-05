@@ -47,6 +47,8 @@ void CustomerManagement::searchCustomer(Data &data)
 void CustomerManagement::deleteCustomer(Data &data)
 {
     List<Customer> &lc = data.getDataCustomer();
+    List<Order> &lo=data.getDataOrder();
+    List<DetailOrder> &ld=data.getDataDetailOrder();
     string tmp;
     g.tab(65);cout<<"---------------------------------------------" << endl;
     g.tab(65);cout<<"|              XOA KHACH HANG               |" << endl;
@@ -82,21 +84,21 @@ void CustomerManagement::deleteCustomer(Data &data)
         int n;
         g.tab(81);cout<<"Nhap lua chon: ";cin>>n;
         if(n==1){
-            for(int i=0;i<data.getDataOrder().size_list();i++){
-                if(lc[index].getIDCustomer()==data.getDataOrder()[i].getIDCustomer()){
-                    for(int j=0;j<data.getDataDetailOrder().size_list();j++){
-                        if(data.getDataDetailOrder()[j].getIDOrder()==data.getDataOrder()[i].getIDOrder()){
-                            data.getDataDetailOrder().remove(j);
+            for(int i=0;i<lo.size_list();i++){
+                if(lc[index].getIDCustomer()==lo[i].getIDCustomer()){
+                    for(int j=0;j<ld.size_list();j++){
+                        if(ld[j].getIDOrder()==lo[i].getIDOrder()){
+                            ld.remove(j);
                             j--;
                         }
                     }
-                    data.getDataOrder().remove(i);
+                    lo.remove(i);
                     break;
                 }
             }
             lc.remove(index);
-            data.writeFileOrder(data.getDataOrder());
-            data.writeFileDetailOrder(data.getDataDetailOrder());
+            data.writeFileOrder(lo);
+            data.writeFileDetailOrder(ld);
             data.writeFileCustomer(lc);
             g.tab(65);cout << "--------------XOA KHACH HANG THANH CONG!--------------" << endl;
            
