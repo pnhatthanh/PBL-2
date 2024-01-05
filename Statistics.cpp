@@ -38,7 +38,7 @@ void Statistics::sales(Data& data){
          cout<<"Moc thoi gian khong hop le. Vui long nhap lai!!!"<<endl;
       }
    }while(check);
-   List<Order> dataOrder=data.getDataOrder();
+   List<Order> &dataOrder=data.getDataOrder();
    g.downLine(1);
    g.tab(82);
    cout<<"DANH SACH HOA DON"<<endl;
@@ -63,7 +63,7 @@ void Statistics::listBestSeller(Data &data){
    g.tab(65);cout<<"---------------------------------------------" << endl;
    g.downLine(2);
    List<MapBook> map;
-   List<DetailOrder> detail=data.getDataDetailOrder();
+   List<DetailOrder> &detail=data.getDataDetailOrder();
    for(int i=0;i<detail.size_list();i++){
       bool check=false;
       for(int j=0;j<map.size_list();j++){
@@ -93,7 +93,7 @@ void Statistics::listBestSeller(Data &data){
    g.tab(60);cout << " ====================================================" << endl;
    g.tab(60);cout << " |Ten sach                                |So luong |"<<endl;
    g.tab(60);cout << " ----------------------------------------------------" << endl;
-   List<Book> book=data.getDataBook();
+   List<Book> &book=data.getDataBook();
    for(int i=0;i<map.size_list();i++){
       for(int j=0;j<book.size_list();j++){
          if(map[i].getIDBook()==book[j].getIDBook()){
