@@ -4,7 +4,7 @@ void Statistics::inventoryNumber(Data &data){
     g.tab(65);cout<<"|              SO LUONG TON KHO             |" << endl;
     g.tab(65);cout<<"---------------------------------------------" << endl;
     g.downLine(2);
-    List<Book> dataBook=data.getDataBook();
+    List<Book> &dataBook=data.getDataBook();
     g.tab(52);cout << " =======================================================================" << endl;
     g.tab(52);cout << " |Ma sach |Ten Sach                                |So luong |Gia sach |" << endl;
     g.tab(52);cout << " -----------------------------------------------------------------------" << endl;

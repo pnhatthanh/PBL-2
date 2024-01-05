@@ -171,7 +171,7 @@ void OrderManagement::listOrder(Data &data){
     g.tab(65);cout<<"---------------------------------------------" << endl;
     g.tab(65);cout<<"|             DANH SACH HOA DON             |" << endl;
     g.tab(65);cout<<"---------------------------------------------" << endl;
-    List<Order> order=data.getDataOrder();
+    List<Order> &order=data.getDataOrder();
     g.downLine(1);
     g.tab(54);cout<<"====================================================================="<<endl;
     g.tab(54);cout<<"|Ma don hang   |Ma khach hang   |Ngay mua hang   |Tong tien(VND)    |"<<endl;
@@ -217,7 +217,7 @@ void OrderManagement::showOrder(Data &data)
         return;
     }
     int index2=-1;
-    List<Customer> customer=data.getDataCustomer();
+    List<Customer> &customer=data.getDataCustomer();
     for(int i=0;i<customer.size_list();i++){
         if(order[index].getIDCustomer()==customer[i].getIDCustomer()){
             index2=i;
@@ -239,8 +239,8 @@ void OrderManagement::showOrder(Data &data)
     g.tab(53);cout << "=================================================================" << endl;
     g.tab(53);cout << "|Ten sach                           |Don gia(VND)   |So luong   |" << endl;
     g.tab(53);cout << "-----------------------------------------------------------------" << endl;
-    List<DetailOrder>& detail=data.getDataDetailOrder();
-    List<Book>& book=data.getDataBook();
+    List<DetailOrder> &detail=data.getDataDetailOrder();
+    List<Book> &book=data.getDataBook();
     for(int i=0;i<detail.size_list();i++){
         if(order[index].getIDOrder()==detail[i].getIDOrder()){
             for(int j=0;j<book.size_list();j++){
@@ -266,7 +266,7 @@ void OrderManagement::deleteOrder(Data& data){
     getline(cin, idOrder);
     g.downLine(1);
     int index=-1;
-    List<Order>& order = data.getDataOrder();
+    List<Order> &order = data.getDataOrder();
     for (int i = 0; i < order.size_list(); i++)
     {
         if (idOrder == order[i].getIDOrder())
@@ -285,8 +285,8 @@ void OrderManagement::deleteOrder(Data& data){
     g.tab(56);cout << "=================================================================" << endl;
     g.tab(56);cout << "|Ten sach                           |Don gia(VND)   |So luong   |" << endl;
     g.tab(56);cout << "-----------------------------------------------------------------" << endl;
-    List<DetailOrder>& detail=data.getDataDetailOrder();
-    List<Book>& book=data.getDataBook();
+    List<DetailOrder> &detail=data.getDataDetailOrder();
+    List<Book> &book=data.getDataBook();
     for(int i=0;i<detail.size_list();i++){
         if(order[index].getIDOrder()==detail[i].getIDOrder()){
             for(int j=0;j<book.size_list();j++){
